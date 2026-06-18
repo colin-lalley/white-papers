@@ -287,7 +287,7 @@ body {
 .intro-header { text-align: center; padding: 0 48px; max-width: 700px; margin: 0 auto 64px; }
 .intro-headline { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(30px, 4vw, 46px); font-weight: 700; line-height: 1.1; color: var(--ink); margin-bottom: 18px; }
 .intro-deck { font-size: 18px; font-style: italic; line-height: 1.65; color: var(--ink-light); }
-.intro-columns { max-width: 960px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+.intro-columns { max-width: 960px; margin: 0 auto; padding: 0 48px; overflow: hidden; }
 .dropcap-p::first-letter { float: left; font-family: 'Playfair Display', Georgia, serif; font-size: 74px; font-weight: 900; line-height: 0.78; margin: 6px 14px 0 0; color: var(--purple-deep); }
 .key-points-box { background: var(--paper-warm); padding: 32px; border-top: 2px solid var(--purple-mid); }
 .key-points-label { font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--purple-mid); margin-bottom: 20px; }
@@ -319,7 +319,7 @@ body {
 .chapter-opener { position: relative; overflow: hidden; }
 .chapter-opener-inner { max-width: 960px; margin: 0 auto; padding: 80px 48px 60px; position: relative; z-index: 2; }
 .article-body { max-width: 960px; margin: 0 auto; padding: 0 48px 80px; }
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; align-items: start; }
+.two-col { overflow: hidden; }
 .sidebar-box { background: var(--paper-warm); border-top: 2px solid var(--ink); padding: 28px; }
 .sidebar-label { font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 14px; }
 .sidebar-text { font-size: 14px; line-height: 1.72; color: var(--ink-light); }
@@ -330,12 +330,12 @@ body {
    CH2: SIX RISKS
 ═══════════════════════════════════════════════════════ */
 #ch2 { background: var(--paper-dark); }
-.risk-feature-inner { padding: 48px 0; border-top: 0.5px solid var(--rule); display: grid; grid-template-columns: 120px 1fr 260px; gap: 44px; align-items: start; }
-.risk-num-large { font-family: 'Playfair Display', Georgia, serif; font-size: 80px; font-weight: 900; line-height: 1; color: var(--paper-dark); -webkit-text-stroke: 1.5px var(--purple-lite); text-stroke: 1.5px var(--purple-lite); }
+.risk-feature-inner { padding: 48px 0; border-top: 0.5px solid var(--rule); overflow: hidden; }
+.risk-num-large { float: left; width: 108px; margin-right: 28px; font-family: 'Playfair Display', Georgia, serif; font-size: 80px; font-weight: 900; line-height: 1; color: var(--paper-dark); -webkit-text-stroke: 1.5px var(--purple-lite); text-stroke: 1.5px var(--purple-lite); }
 .risk-feature-title { font-family: 'Playfair Display', Georgia, serif; font-size: 28px; font-weight: 700; line-height: 1.15; color: var(--ink); margin-bottom: 16px; }
 .risk-feature-body { font-size: 15px; line-height: 1.78; color: var(--ink-light); }
 .risk-feature-body p + p { margin-top: 16px; }
-.risk-sidebar { border-top: 2px solid var(--purple-mid); padding-top: 20px; }
+.risk-sidebar { float: right; width: 252px; margin-left: 44px; margin-bottom: 8px; border-top: 2px solid var(--purple-mid); padding-top: 20px; }
 .risk-sidebar-label { font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--purple-mid); margin-bottom: 14px; }
 .risk-sidebar-items { list-style: none; }
 .risk-sidebar-items li { font-size: 13px; line-height: 1.6; color: var(--ink-light); padding: 7px 0 7px 14px; border-bottom: 0.5px solid var(--rule); position: relative; }
@@ -402,14 +402,16 @@ body {
 .ch6-opener .chapter-deck { color: rgba(247,248,242,0.6); border-left-color: var(--green); }
 .ch6-opener .ch-ghost-num { color: rgba(247,248,242,0.04); }
 .gaps-wrap { max-width: 960px; margin: 0 auto; padding: 0 48px 80px; }
-.gap-feature { padding: 52px 0; border-top: 0.5px solid var(--rule); display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+.intro-right-col { float: right; width: 300px; margin-left: 48px; margin-bottom: 24px; }
+.ch1-right-col { float: right; width: 300px; margin-left: 48px; margin-bottom: 24px; }
+.gap-feature { padding: 52px 0; border-top: 0.5px solid var(--rule); overflow: hidden; }
 .gap-feature:first-child { border-top: none; }
 .gap-num-display { font-family: 'Playfair Display', Georgia, serif; font-size: 100px; font-weight: 900; line-height: 0.85; color: var(--paper); -webkit-text-stroke: 1.5px rgba(15,28,44,0.15); margin-bottom: 16px; }
 .gap-title { font-family: 'Playfair Display', Georgia, serif; font-size: 26px; font-weight: 700; line-height: 1.15; color: var(--ink); margin-bottom: 14px; }
 .gap-body { font-size: 15px; line-height: 1.78; color: var(--ink-light); }
 .gap-body p + p { margin-top: 14px; }
 .gap-punch { display: block; margin-top: 20px; font-family: 'Playfair Display', Georgia, serif; font-size: 16px; font-style: italic; color: var(--ink); padding-left: 20px; border-left: 2px solid var(--purple-mid); }
-.gap-sidebar { background: var(--paper); border-top: 2px solid var(--purple-deep); padding: 28px; }
+.gap-sidebar { float: right; width: 260px; margin-left: 40px; margin-bottom: 16px; background: var(--paper); border-top: 2px solid var(--purple-deep); padding: 28px; }
 .gap-sidebar-label { font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 16px; }
 .action-list { list-style: none; }
 .action-list li { font-size: 13px; line-height: 1.6; padding: 8px 0 8px 16px; position: relative; border-bottom: 0.5px solid var(--rule); color: var(--ink-light); }
@@ -442,8 +444,9 @@ body {
 
 /* ─── RESPONSIVE ────────────────────────────────────── */
 @media (max-width: 768px) {
-  .intro-columns, .two-col, .emerging-three-col, .risk-feature-inner,
-  .ls-row, .cc-grid, .gap-feature, .break-grid, .cover-footer { grid-template-columns: 1fr; }
+  .emerging-three-col,
+  .ls-row, .cc-grid, .break-grid, .cover-footer { grid-template-columns: 1fr; }
+  .intro-right-col, .ch1-right-col, .gap-sidebar { float: none; width: 100%; margin-left: 0; }
   .cover-body, .chapter-opener-inner, .article-body, .pullquote-wrap,
   .gaps-wrap, .coverage-wrap, .lifecycle-wrap, .emerging-three-col,
   .img-chapter-opener-content { padding-left: 24px; padding-right: 24px; }
@@ -517,13 +520,7 @@ body {
     <p class="intro-deck">From AI-enabled diagnostics to next-generation therapeutics, innovation is accelerating the path from discovery to commercialization — and so are the stakes.</p>
   </div>
   <div class="intro-columns">
-    <div class="fade fade-d1">
-      <p class="body-text dropcap-p">From AI-enabled diagnostics to next-generation therapeutics, innovation is accelerating the path from discovery to commercialization in Healthcare and Life Sciences. Scientific progress is moving faster than ever — and so are the stakes.</p>
-      <p class="body-text" style="margin-top:20px;">In this sector, speed doesn't just create opportunity. It magnifies exposure. Unlike most software startups, HCLS companies face regulatory scrutiny before revenue, liability before scale, and valuation inflection points tied to clinical and regulatory milestones.</p>
-      <p class="body-text" style="margin-top:20px;">More than 90% of drug candidates that enter clinical development never reach approval. Along the way, companies navigate complex regulatory frameworks, manage clinical trial risk, secure capital through uncertain milestones, and prepare for the scrutiny that accompanies growth.</p>
-      <p class="body-text" style="margin-top:20px;">Organizations that navigate this landscape successfully treat risk as a structural component of company building — aligning governance discipline, operational controls, and stage-appropriate insurance strategy.</p>
-    </div>
-    <div class="fade fade-d2">
+    <div class="fade fade-d2 intro-right-col">
       <div class="key-points-box">
         <div class="key-points-label">This paper examines</div>
         <div class="key-point"><div class="kp-num">I</div><div class="kp-text">Six core risks shaping today's HCLS landscape — from regulatory exposure to executive liability</div></div>
@@ -531,6 +528,13 @@ body {
         <div class="key-point"><div class="kp-num">III</div><div class="kp-text">How insurance should function at each stage of company development</div></div>
         <div class="key-point"><div class="kp-num">IV</div><div class="kp-text">The structural gaps that most often leave HCLS companies unintentionally exposed</div></div>
       </div>
+    </div>
+    <div class="fade fade-d1">
+      <p class="body-text dropcap-p">From AI-enabled diagnostics to next-generation therapeutics, innovation is accelerating the path from discovery to commercialization in Healthcare and Life Sciences. Scientific progress is moving faster than ever, and so are the stakes.</p>
+      <p class="body-text" style="margin-top:20px;">In this sector, speed doesn't just create opportunity. It magnifies exposure. Unlike most software startups, HCLS companies face regulatory scrutiny before revenue, liability before scale, and valuation inflection points tied to clinical and regulatory milestones. Scientific, operational, and financial risk evolve quickly and often simultaneously.</p>
+      <p class="body-text" style="margin-top:20px;">The numbers reflect that reality. More than 90% of drug candidates that enter clinical development never reach approval. Along the way, companies navigate complex regulatory frameworks, manage clinical trial risk, secure capital through uncertain milestones, and prepare for the scrutiny that accompanies growth.</p>
+      <p class="body-text" style="margin-top:20px;">As a result, founders, operators, and investors are asking practical questions: When does exposure meaningfully change? Which types of coverage respond at different stages? And how should risk protection evolve without constraining scarce capital too early?</p>
+      <p class="body-text" style="margin-top:20px;">Organizations that navigate this landscape successfully treat risk as a structural component of company building. Aligning governance discipline, operational controls, and stage-appropriate insurance strategy helps protect capital, preserve valuation, and sustain momentum.</p>
     </div>
   </div>
   <div class="pullquote-wrap fade">
@@ -592,14 +596,7 @@ body {
   </div>
   <div class="article-body">
     <div class="two-col">
-      <div class="fade fade-d1">
-        <div class="article-section-head">The landscape</div>
-        <p class="body-text">Venture-backed companies are expected to scale, reach clinical milestones, satisfy regulators, and secure capital — often simultaneously. Speed is a defining feature of the sector, but it also magnifies risk.</p>
-        <p class="body-text" style="margin-top:20px;">As companies advance, exposure escalates. IND filings and human clinical trials introduce FDA and IRB scrutiny. Enterprise value often concentrates in a narrow set of IP assets and clinical milestones. The question for founders is no longer whether risk exists — but when it shows up, and whether the structure is ready.</p>
-        <div class="article-section-head">Where risk categories collide</div>
-        <p class="body-text">Technological, clinical, data governance, and product liability risks increasingly overlap. Coverage uncertainty — "which policy responds if something goes wrong?" — is now the more common question than "are we covered?"</p>
-      </div>
-      <div class="fade fade-d2">
+    <div class="fade fade-d2 ch1-right-col">
         <div class="sidebar-box">
           <div class="sidebar-label">Key collisions</div>
           <p class="sidebar-text"><strong>Cloud infrastructure</strong> accelerates research and collaboration but expands the cyber attack surface — healthcare data breaches now averaging nearly $10M per incident.</p>
@@ -607,6 +604,16 @@ body {
           <p class="sidebar-text"><strong>Digital health platforms</strong> blur the boundary between software products and clinical practice, raising complex questions around professional liability and patient harm.</p>
           <p class="sidebar-text"><strong>Connected devices</strong> combine engineering liability with bodily injury exposure, creating hybrid risk profiles that challenge traditional insurance categories.</p>
         </div>
+      </div>
+    <div class="fade fade-d1">
+        <div class="article-section-head">The landscape</div>
+        <p class="body-text">Innovation in Healthcare and Life Sciences has never moved faster. Messenger ribonucleic acid (mRNA) platforms, AI-driven drug discovery, decentralized trials, digital therapeutics, robotics, and advanced diagnostics are compressing development timelines while increasing operational complexity.</p>
+        <p class="body-text" style="margin-top:20px;">Venture-backed companies are expected to scale, reach clinical milestones, satisfy regulators, and secure capital, often simultaneously. Speed is a defining feature of the sector, but it also magnifies risk.</p>
+        <p class="body-text" style="margin-top:20px;">Even in early R&amp;D stages, organizations steward fragile and high-value assets: proprietary datasets, frozen cell lines, research animals, patented discoveries, specialized lab equipment, and confidential experimental results. A freezer failure, corrupted dataset, IP breach, or laboratory incident can delay development, disrupt funding timelines, or derail regulatory progress.</p>
+        <p class="body-text" style="margin-top:20px;">As companies advance, exposure escalates. IND filings and human clinical trials introduce regulatory scrutiny that can halt development if compliance gaps emerge. At the same time, enterprise value often concentrates in a narrow set of intellectual property assets and clinical milestones.</p>
+        <p class="body-text" style="margin-top:20px;">In HCLS, risk is structural. That isn't cause for alarm, but a call for discipline.</p>
+        <div class="article-section-head">Where risk categories collide</div>
+        <p class="body-text">Technological, clinical, data governance, and product liability risks increasingly overlap. For founders and operators, this creates a second-order challenge: coverage uncertainty. The most common question is no longer "Are we covered?" but "Which policy responds if something goes wrong?"</p>
       </div>
     </div>
   </div>
@@ -634,9 +641,10 @@ body {
   <div class="article-body" style="background: var(--paper-dark);">
     <div class="risk-feature-inner fade">
       <div class="risk-num-large">01</div>
+      <div class="risk-sidebar"><div class="risk-sidebar-label">How it shows up</div><ul class="risk-sidebar-items"><li>Protocol deviations trigger trial holds</li><li>Privacy practices lead to enforcement actions</li><li>Commercial partnerships create anti-kickback exposure</li></ul></div>
       <div>
         <div class="risk-feature-title">Regulatory &amp; Compliance Risk</div>
-        <div class="risk-feature-body"><p>Oversight begins early — often before companies generate revenue. Moving from animal studies to human trials introduces FDA and IRB scrutiny. Commercialization adds labeling, advertising, and post-market obligations. Digital health companies face increasing scrutiny around claims and consumer privacy even when HIPAA doesn't technically apply.</p></div>
+        <div class="risk-feature-body"><p>Regulatory and compliance risk arises when organizations fail to meet legal or regulatory obligations. In Healthcare and Life Sciences, this includes clinical research standards, FDA requirements, privacy laws, quality systems, marketing claims, and anti-corruption rules. Missteps can escalate quickly.</p><p style="margin-top:14px;">Oversight begins early, often before companies generate revenue. Moving from animal studies to human trials introduces FDA and Institutional Review Board (IRB) scrutiny. Commercialization adds labeling, advertising, and post-market obligations. Digital health companies face increasing scrutiny around claims and consumer privacy, even when HIPAA doesn't technically apply.</p></div>
         <div class="article-section-head">How to structure it</div>
         <ul class="bullet-list">
           <li>Assign clear compliance ownership, even part-time</li>
@@ -645,13 +653,13 @@ body {
           <li>Formalize vendor oversight for CROs, CDMOs, and partners</li>
         </ul>
       </div>
-      <div class="risk-sidebar"><div class="risk-sidebar-label">How it shows up</div><ul class="risk-sidebar-items"><li>Protocol deviations trigger trial holds</li><li>Privacy practices lead to enforcement actions</li><li>Commercial partnerships create anti-kickback exposure</li></ul></div>
     </div>
     <div class="risk-feature-inner fade">
       <div class="risk-num-large">02</div>
+      <div class="risk-sidebar"><div class="risk-sidebar-label">How it shows up</div><ul class="risk-sidebar-items"><li>Ransomware disrupts clinical trials</li><li>Misconfigured storage exposes participant data</li><li>Employees upload datasets into unapproved AI tools</li></ul></div>
       <div>
         <div class="risk-feature-title">Cybersecurity &amp; Data Privacy</div>
-        <div class="risk-feature-body"><p>Health and research data are both highly valuable and heavily regulated. HCLS companies rely heavily on cloud infrastructure, external collaborators, and connected devices — which expands the attack surface significantly. IBM's 2024 Cost of a Data Breach Report found the average healthcare breach reached $11M, the highest of any industry for fourteen consecutive years.</p></div>
+        <div class="risk-feature-body"><p>Cybersecurity risk includes unauthorized access, misuse, or disruption of sensitive data, including protected health information (PHI), personally identifiable information (PII), genomic data, clinical trial data, and proprietary research. It also includes disruption of the systems that store, process, or transmit that information.</p><p style="margin-top:14px;">Health and research data are both highly valuable and heavily regulated. HCLS companies rely heavily on cloud infrastructure, external collaborators, and connected devices, which expands the attack surface. IBM's 2024 Cost of a Data Breach Report found the average healthcare breach reached $11M, the highest of any industry for fourteen consecutive years.</p></div>
         <div class="risk-callout-pill">$11M avg. healthcare breach cost</div>
         <div class="article-section-head">How to structure it</div>
         <ul class="bullet-list">
@@ -662,13 +670,13 @@ body {
           <li>Implement a written AI use policy defining approved tools and prohibited data</li>
         </ul>
       </div>
-      <div class="risk-sidebar"><div class="risk-sidebar-label">How it shows up</div><ul class="risk-sidebar-items"><li>Ransomware disrupts clinical trials</li><li>Misconfigured storage exposes participant data</li><li>Employees upload datasets into unapproved AI tools</li></ul></div>
     </div>
     <div class="risk-feature-inner fade">
       <div class="risk-num-large">03</div>
+      <div class="risk-sidebar"><div class="risk-sidebar-label">How it shows up</div><ul class="risk-sidebar-items"><li>Participant adverse events during a trial</li><li>Protocol deviations invalidate data</li><li>Lab incidents destroy irreplaceable samples</li></ul></div>
       <div>
         <div class="risk-feature-title">Clinical Trial &amp; R&amp;D Risk</div>
-        <div class="risk-feature-body"><p>Clinical development carries risk related to participant injury, consent issues, protocol deviations, oversight failures, and loss of irreplaceable research data. Multinational trials introduce additional regulatory and liability complexity — a single incident can erase months of progress and delay financing timelines.</p></div>
+        <div class="risk-feature-body"><p>Clinical development carries risk related to participant injury, consent issues, protocol deviations, oversight failures, laboratory hazards, and loss of irreplaceable research data or biological samples.</p><p style="margin-top:14px;">Clinical trials involve real patients operating under strict Good Clinical Practice standards. Multinational trials introduce additional regulatory and liability complexity. Trial data and biological materials are often impossible to recreate, meaning a single incident can erase months of progress.</p></div>
         <div class="article-section-head">How to structure it</div>
         <ul class="bullet-list">
           <li>Train investigators and staff on protocol adherence and safety procedures</li>
@@ -677,13 +685,13 @@ body {
           <li>Clearly define responsibilities and insurance requirements in CRO and CDMO contracts</li>
         </ul>
       </div>
-      <div class="risk-sidebar"><div class="risk-sidebar-label">How it shows up</div><ul class="risk-sidebar-items"><li>Participant adverse events during a trial</li><li>Protocol deviations invalidate data</li><li>Lab incidents destroy irreplaceable samples</li></ul></div>
     </div>
     <div class="risk-feature-inner fade">
       <div class="risk-num-large">04</div>
+      <div class="risk-sidebar"><div class="risk-sidebar-label">How it shows up</div><ul class="risk-sidebar-items"><li>Cold-chain failures spoil critical materials</li><li>Sole-source supplier collapses before a key batch</li><li>Contamination requires scrapping under time pressure</li></ul></div>
       <div>
         <div class="risk-feature-title">Supply Chain &amp; Business Interruption</div>
-        <div class="risk-feature-body"><p>Critical materials are often perishable, temperature-sensitive, or difficult to replace. Qualifying a new supplier may take months due to regulatory and quality requirements. Many early-stage companies underestimate supply chain exposure until disruption forces the issue.</p></div>
+        <div class="risk-feature-body"><p>Supply chain risk arises from dependence on specialized suppliers, manufacturers, and logistics partners, and the operational and financial disruption that follows when those relationships fail. Research from Aon shows that while organizations generate significant supply chain data, most lack the infrastructure needed to convert that data into forward-looking risk decisions.</p><p style="margin-top:14px;">Critical materials are often perishable, temperature-sensitive, or difficult to replace. Qualifying a new supplier may take months due to regulatory and quality requirements. A contamination event, shipment excursion, or customs delay can derail key development milestones. Many early-stage companies underestimate supply chain exposure until disruption forces the issue.</p></div>
         <div class="article-section-head">How to structure it</div>
         <ul class="bullet-list">
           <li>Map single points of failure and qualify backup suppliers when possible</li>
@@ -692,13 +700,13 @@ body {
           <li>Model recovery timelines for critical vendors and manufacturing partners</li>
         </ul>
       </div>
-      <div class="risk-sidebar"><div class="risk-sidebar-label">How it shows up</div><ul class="risk-sidebar-items"><li>Cold-chain failures spoil critical materials</li><li>Sole-source supplier collapses before a key batch</li><li>Contamination requires scrapping under time pressure</li></ul></div>
     </div>
     <div class="risk-feature-inner fade">
       <div class="risk-num-large">05</div>
+      <div class="risk-sidebar"><div class="risk-sidebar-label">How it shows up</div><ul class="risk-sidebar-items"><li>Post-market side effects lead to litigation</li><li>Device malfunctions trigger regulatory recalls</li><li>Algorithmic outputs contribute to incorrect decisions</li></ul></div>
       <div>
         <div class="risk-feature-title">Product Liability</div>
-        <div class="risk-feature-body"><p>Product failures in HCLS can result in serious injury or death. FDA clearance doesn't prevent litigation. Digital health tools introduce additional complexity when algorithms influence clinical decisions — raising questions about accountability when harm occurs.</p></div>
+        <div class="risk-feature-body"><p>Product liability risk arises when drugs, devices, diagnostics, or software products are alleged to have caused patient injury or harm.</p><p style="margin-top:14px;">The severity of potential harm is significantly higher in this sector. Product failures can result in serious injury or death. FDA clearance doesn't prevent litigation. Digital health and software-enabled care introduce additional complexity when algorithms influence clinical decisions, raising questions about accountability when harm occurs.</p><p style="margin-top:14px;">Industry analyses consistently identify product liability as one of the most misaligned insurance areas for HCLS companies, particularly when digital tools blur the line between software and medical device.</p></div>
         <div class="article-section-head">How to structure it</div>
         <ul class="bullet-list">
           <li>Maintain strong design controls and documented risk assessments</li>
@@ -707,13 +715,13 @@ body {
           <li>Establish a product recall and crisis response plan before commercialization</li>
         </ul>
       </div>
-      <div class="risk-sidebar"><div class="risk-sidebar-label">How it shows up</div><ul class="risk-sidebar-items"><li>Post-market side effects lead to litigation</li><li>Device malfunctions trigger regulatory recalls</li><li>Algorithmic outputs contribute to incorrect decisions</li></ul></div>
     </div>
     <div class="risk-feature-inner fade">
       <div class="risk-num-large">06</div>
+      <div class="risk-sidebar"><div class="risk-sidebar-label">How it shows up</div><ul class="risk-sidebar-items"><li>Investors allege misleading disclosures post-setback</li><li>M&amp;A transactions generate valuation disputes</li><li>Compliance failures escalate into board litigation</li></ul></div>
       <div>
         <div class="risk-feature-title">Executive &amp; Board Risk</div>
-        <div class="risk-feature-body"><p>Company valuations often hinge on clinical and regulatory milestones. Dechert's 2025 analysis found roughly one in five federal securities class actions targeted HCLS companies — frequently centered on product safety, efficacy claims, regulatory disclosures, or development setbacks.</p></div>
+        <div class="risk-feature-body"><p>Directors and officers face claims alleging misrepresentation, fiduciary breaches, disclosure failures, or oversight breakdowns.</p><p style="margin-top:14px;">Company valuations often hinge on clinical and regulatory milestones. Dechert's 2025 securities litigation analysis found that roughly one in five federal securities class actions targeted Healthcare and Life Sciences companies.</p><p style="margin-top:14px;">Litigation frequently centers on product safety, efficacy claims, regulatory disclosures, or development setbacks. Founder concern about personal exposure often peaks during investigations, failed trials, or major transactions.</p></div>
         <div class="risk-callout-pill">~20% of securities class actions</div>
         <div class="article-section-head">How to structure it</div>
         <ul class="bullet-list">
@@ -722,7 +730,6 @@ body {
           <li>Formalize governance structures with committees, escalation paths, and conflict-of-interest policies</li>
         </ul>
       </div>
-      <div class="risk-sidebar"><div class="risk-sidebar-label">How it shows up</div><ul class="risk-sidebar-items"><li>Investors allege misleading disclosures post-setback</li><li>M&amp;A transactions generate valuation disputes</li><li>Compliance failures escalate into board litigation</li></ul></div>
     </div>
   </div>
 </section>
@@ -758,25 +765,25 @@ body {
       <div class="emerging-col-icon">AI</div>
       <div class="emerging-col-num">Emerging Risk 01</div>
       <div class="emerging-col-title">Generative AI &amp; Digital Health</div>
-      <div class="emerging-col-body">AI is reshaping drug discovery, clinical trials, diagnostics, and patient engagement — while introducing governance, privacy, and liability challenges that many standard policies were not designed to address.</div>
-      <ul class="emerging-risks"><li>Data leakage from unapproved AI tools</li><li>Bias across patient populations</li><li>Hallucinated outputs in patient-facing apps</li><li>Evolving FDA, FTC, and state guidance</li></ul>
-      <div class="emerging-action">Review how bodily injury is treated in Tech E&amp;O and Product Liability — policy titles alone are unreliable.</div>
+      <div class="emerging-col-body">Generative AI is reshaping drug discovery, clinical trial operations, diagnostics, and patient engagement. At the same time, it introduces governance, privacy, and liability challenges that many standard insurance policies were not designed to address.</div>
+      <ul class="emerging-risks"><li>Data leakage or IP exposure from unapproved AI tools</li><li>Bias or uneven performance across patient populations</li><li>Hallucinated or unsafe outputs in patient-facing applications</li><li>Rapidly evolving regulatory expectations from the FDA, FTC, and state authorities</li></ul>
+      <div class="emerging-action">When AI systems influence patient outcomes, liability exposure can shift quickly. Review how bodily injury is treated under Tech E&amp;O and Product Liability — policy titles alone are not reliable indicators of coverage.</div>
     </div>
     <div class="emerging-col fade fade-d2">
       <div class="emerging-col-icon">ESG</div>
       <div class="emerging-col-num">Emerging Risk 02</div>
       <div class="emerging-col-title">ESG Expectations</div>
-      <div class="emerging-col-body">What was once a reputational consideration is becoming a routine diligence line item — especially in healthcare, where trust and ethics are central to value.</div>
-      <ul class="emerging-risks"><li>Lab waste and ethical sourcing practices</li><li>Clinical trial diversity documentation</li><li>Governance maturity evidence</li><li>Public ESG claims as diligence targets</li></ul>
-      <div class="emerging-action">Governance discipline reduces valuation friction — document fundamentals before deal-table pressure.</div>
+      <div class="emerging-col-body">ESG considerations are increasingly present in diligence processes for investors and strategic partners, particularly in healthcare, where trust and ethics are central. What was once a reputational consideration is becoming a routine diligence line item for institutional investors and strategic acquirers.</div>
+      <ul class="emerging-risks"><li>Laboratory waste handling and ethical sourcing practices</li><li>Clinical trial diversity documentation</li><li>Governance maturity evidence</li><li>Public ESG claims as diligence targets</li></ul>
+      <div class="emerging-action">Document operational fundamentals early — waste disposal, vendor standards, clinical ethics practices, and basic governance artifacts — before they become deal-table pressure.</div>
     </div>
     <div class="emerging-col fade fade-d4">
       <div class="emerging-col-icon">M&A</div>
       <div class="emerging-col-num">Emerging Risk 03</div>
       <div class="emerging-col-title">M&amp;A Readiness &amp; IP Valuation</div>
-      <div class="emerging-col-body">HCLS transactions center on IP, proprietary data, and regulatory position. Many founders are surprised by how far back acquirers reach — and how aggressively risks are repriced.</div>
+      <div class="emerging-col-body">Healthcare and Life Sciences transactions frequently center on intellectual property, proprietary data, and regulatory position. Unclear IP ownership, undisclosed compliance issues, or inherited liabilities can derail transactions or trigger post-closing disputes.</div>
       <ul class="emerging-risks"><li>Unclear IP ownership derails transactions</li><li>Undisclosed compliance issues reprice deals</li><li>D&amp;O runoff gaps create continuity risk</li><li>Inherited liabilities trigger post-close disputes</li></ul>
-      <div class="emerging-action">Clean documentation preserves deal leverage — building it under deal pressure is far more disruptive.</div>
+      <div class="emerging-action">Many founders are surprised by how far back acquirers reach during diligence and how aggressively risks are repriced when issues surface. Building clean documentation early is far less disruptive than reconstructing it under deal pressure.</div>
     </div>
   </div>
 </section>
@@ -803,7 +810,16 @@ body {
     <div class="milestone-callout fade">
       <div class="mc-label">Key Principle</div>
       <div class="mc-headline">Milestones — not renewals — should drive insurance decisions.</div>
-      <div class="mc-body">First patient enrollment, IND filings, enterprise contract execution, and major financings are the moments to reassess coverage — not the annual renewal calendar. Aligning coverage to these transitions prevents the structural gaps that renewals routinely miss.</div>
+      <div class="mc-body">In venture-backed HCLS companies, exposure often changes faster than traditional insurance renewal cycles. Clinical milestones, product launches, and financing events can reshape risk overnight. Insurance decisions should be tied to operational milestones rather than calendar renewals. Common inflection points include:</div>
+      <ul class="bullet-list" style="margin-top: 16px;">
+        <li>First patient enrollment or first dosing in a clinical trial</li>
+        <li>IND filing or preparation for pivotal trials</li>
+        <li>Launch of patient-facing software or digital health functionality</li>
+        <li>Execution of enterprise contracts with elevated insurance requirements</li>
+        <li>Major financing events or late-stage venture rounds</li>
+        <li>Commercial product distribution and post-market surveillance obligations</li>
+        <li>Rapid team expansion across multiple states or jurisdictions</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -822,10 +838,10 @@ body {
     </div>
   </div>
   <div class="coverage-wrap">
-    <div class="coverage-cat fade"><div class="cc-grid"><div class="cc-label">Governance Risk</div><div class="cc-items"><div class="cc-item"><div class="cc-item-name">Directors &amp; Officers (D&O)</div><div class="cc-item-body">Protects directors and officers when claims allege misrepresentation, fiduciary breach, or disclosure failures. D&O isn't a late-stage consideration — clinical setbacks and regulatory delays can trigger investor litigation at any stage. As companies approach pivotal trials, major financings, or IPO preparation, D&O coverage becomes balance-sheet critical.</div><span class="cc-item-note">Investors evaluate insurance structure as a signal of governance maturity.</span></div></div></div></div>
-    <div class="coverage-cat fade"><div class="cc-grid"><div class="cc-label">Human Impact Risk</div><div class="cc-items"><div class="cc-item"><div class="cc-item-name">Clinical Trial Liability</div><div class="cc-item-body">Protects against claims from participant injury during clinical development. Must be in place before the first patient is enrolled — frequently required by trial sites, IRBs, and regulators. Delaying until dosing approaches creates avoidable operational delays.</div></div><div class="cc-item"><div class="cc-item-name">Product Liability</div><div class="cc-item-body">Extends protection into commercialization. Once a product reaches patients, standard General Liability is rarely sufficient. Most HCLS companies require standalone policies reflecting the potential severity of harm.</div></div></div></div></div>
-    <div class="coverage-cat fade"><div class="cc-grid"><div class="cc-label">Digital &amp; Data Risk</div><div class="cc-items"><div class="cc-item"><div class="cc-item-name">Cyber Insurance</div><div class="cc-item-body">Covers breach response, legal fees, notification expenses, regulatory defense where insurable, and business interruption. With average healthcare breaches exceeding $11M, Cyber coverage is foundational — not optional.</div></div><div class="cc-item"><div class="cc-item-name">Technology E&O</div><div class="cc-item-body">Addresses claims when software fails to perform as intended. If software could contribute to patient harm, the treatment of bodily injury must be reviewed explicitly — many standard policies exclude it unless specifically negotiated.</div><span class="cc-item-note">Policy titles alone are not reliable indicators of bodily injury coverage.</span></div></div></div></div>
-    <div class="coverage-cat fade"><div class="cc-grid"><div class="cc-label">Asset &amp; Supply Chain</div><div class="cc-items"><div class="cc-item"><div class="cc-item-name">Scientific Property</div><div class="cc-item-body">Must extend beyond standard commercial forms. Research animals, biologic samples, frozen cell lines, and temperature-sensitive materials require specific scheduling or endorsements. Scientific assets are frequently underinsured.</div></div><div class="cc-item"><div class="cc-item-name">Contingent Business Interruption</div><div class="cc-item-body">Covers revenue loss when supplier disruption — not internal damage — interrupts operations. Critical for companies dependent on a single CDMO or sole-source reagent supplier.</div></div><div class="cc-item"><div class="cc-item-name">Cargo &amp; Stock Throughput</div><div class="cc-item-body">Addresses goods in transit or stored at third-party locations, including cold-chain shipments where temperature excursions can render entire batches unusable.</div></div></div></div></div>
+    <div class="coverage-cat fade"><div class="cc-grid"><div class="cc-label">Governance Risk</div><div class="cc-items"><div class="cc-item"><div class="cc-item-name">Directors &amp; Officers (D&O)</div><div class="cc-item-body">D&O Insurance protects individual directors and officers, as well as the company, when claims allege misrepresentation, breach of fiduciary duty, disclosure failures, or oversight breakdowns. In Healthcare and Life Sciences, D&O isn't a late-stage consideration. Clinical setbacks, regulatory delays, and financing disputes can trigger investor litigation at any stage. As companies approach pivotal trials, major financings, or IPO preparation, D&O coverage becomes balance-sheet critical. Investors, board members, and enterprise partners increasingly evaluate insurance structure as a signal of governance maturity. Insufficient limits can slow financing, complicate diligence, or create friction in commercial partnerships.</div></div></div></div></div>
+    <div class="coverage-cat fade"><div class="cc-grid"><div class="cc-label">Human Impact Risk</div><div class="cc-items"><div class="cc-item"><div class="cc-item-name">Clinical Trial Liability</div><div class="cc-item-body">Clinical Trial Liability Insurance protects against claims arising from participant injury or protocol-related issues during clinical development. It should be in place before the first patient is enrolled and is frequently required by trial sites, Institutional Review Boards (IRBs), and regulators. Delaying coverage until dosing approaches often creates avoidable operational delays.</div></div><div class="cc-item"><div class="cc-item-name">Product Liability</div><div class="cc-item-body">Product Liability Insurance extends that protection into commercialization. Once a product reaches patients or customers, standard General Liability coverage is rarely sufficient. Most HCLS companies require standalone Product Liability policies that reflect the potential severity of harm, whether associated with pharmaceuticals, medical devices, diagnostics, or software that influences clinical decisions.</div></div></div></div></div>
+    <div class="coverage-cat fade"><div class="cc-grid"><div class="cc-label">Digital &amp; Data Risk</div><div class="cc-items"><div class="cc-item"><div class="cc-item-name">Cyber Insurance</div><div class="cc-item-body">Cyber Insurance addresses the operational and legal consequences of data incidents, including breach response costs, legal fees, notification expenses, regulatory defense where insurable, and business interruption. In a sector where the average healthcare data breach now exceeds $11M, Cyber coverage is foundational.</div></div><div class="cc-item"><div class="cc-item-name">Technology Errors &amp; Omissions (Tech E&O)</div><div class="cc-item-body">Tech E&O Insurance addresses claims arising from software or technology services failing to perform as intended. In Healthcare and Life Sciences, exposure depends heavily on what the software does. Administrative platforms carry different risk than diagnostic tools, clinical decision support systems, or patient-facing applications. If software could contribute to patient harm, the treatment of bodily injury within Tech E&O coverage should be reviewed explicitly. Many standard technology policies exclude bodily injury unless negotiated.</div><span class="cc-item-note">Policy titles alone are not reliable indicators of bodily injury coverage.</span></div></div></div></div>
+    <div class="coverage-cat fade"><div class="cc-grid"><div class="cc-label">Asset &amp; Supply Chain</div><div class="cc-items"><div class="cc-item"><div class="cc-item-name">Scientific Property</div><div class="cc-item-body">Business Property Insurance in Healthcare and Life Sciences must extend beyond standard commercial forms. Research animals, biologic samples, frozen cell lines, temperature-sensitive materials, and proprietary datasets often require specific scheduling or endorsements. Scientific assets are fragile, often irreplaceable, and frequently underinsured.</div></div><div class="cc-item"><div class="cc-item-name">Contingent Business Interruption (CBI)</div><div class="cc-item-body">CBI Insurance covers revenue loss and additional expense when supplier disruption, rather than internal damage, interrupts operations. For companies dependent on a single Contract Development and Manufacturing Organization (CDMO) or sole-source reagent supplier, this coverage deserves careful evaluation.</div></div><div class="cc-item"><div class="cc-item-name">Cargo &amp; Stock Throughput</div><div class="cc-item-body">Addresses goods in transit or stored at third-party locations, including cold-chain shipments where temperature excursions can render entire batches unusable.</div></div></div></div></div>
     <div class="coverage-cat fade"><div class="cc-grid"><div class="cc-label">Workforce &amp; Management Risk</div><div class="cc-items"><div class="cc-item"><div class="cc-item-name">Employment Practices Liability (EPL)</div><div class="cc-item-body">Covers claims alleging wrongful termination, discrimination, harassment, or other employment-related violations. Multi-state hiring, rapid headcount expansion, and high-pressure environments can elevate this risk.</div></div><div class="cc-item"><div class="cc-item-name">Crime Insurance</div><div class="cc-item-body">Protects against losses from employee dishonesty, fraud, forgery, and social engineering attacks. As financial controls evolve and organizations scale, both internal and external fraud exposure increase.</div></div><div class="cc-item"><div class="cc-item-name">Workers' Compensation</div><div class="cc-item-body">Legally required once employees are hired and particularly important in laboratory environments where physical injury risk is real. While straightforward, lapses can create significant financial and regulatory consequences.</div></div></div></div></div>
     <div class="coverage-cat fade"><div class="cc-grid"><div class="cc-label">Additional Coverages</div><div class="cc-items"><div class="cc-item"><div class="cc-item-name">Medical Malpractice</div><div class="cc-item-body">Applies to organizations providing diagnostic, treatment, or telehealth services. Complements Tech E&amp;O and is necessary when clinical care is delivered directly.</div></div><div class="cc-item"><div class="cc-item-name">Fiduciary Liability</div><div class="cc-item-body">Protects against claims related to the management of employee benefit plans. Becomes more relevant as benefit programs grow in complexity.</div></div><div class="cc-item"><div class="cc-item-name">General Liability</div><div class="cc-item-body">Remains foundational, covering third-party bodily injury and property damage claims. In HCLS programs, confirm that products and completed operations coverage is included — these elements may be limited or excluded in startup-oriented insurance bundles.</div><span class="cc-item-note">Startup bundles may limit or exclude products and completed operations coverage.</span></div></div></div></div>
   </div>
@@ -851,10 +867,10 @@ body {
     </div>
   </div>
   <div class="gaps-wrap">
-    <div class="gap-feature fade"><div><div class="gap-num-display">01</div><div class="gap-title">Mistaking Startup Coverage for Life Sciences Coverage</div><div class="gap-body"><p>Early-stage companies often carry general startup insurance bundles without realizing those policies may exclude clinical trial injury, product-related bodily harm, or regulatory-driven claims. If an insurer isn't asking detailed questions about clinical trials or regulatory pathways, the program may not reflect the company's true risk profile.</p><span class="gap-punch">Generic coverage is cheaper — until it isn't.</span></div></div><div class="gap-sidebar"><div class="gap-sidebar-label">What to watch for</div><ul class="action-list"><li>No questions about clinical trial activity</li><li>Product liability without bodily injury review</li><li>No ask about FDA regulatory pathway</li><li>Cyber not structured for PHI or genomic data</li></ul></div></div>
-    <div class="gap-feature fade"><div><div class="gap-num-display">02</div><div class="gap-title">Leaving Scientific Assets Unprotected</div><div class="gap-body"><p>Research animals, biologic samples, frozen cell lines, and temperature-sensitive materials are often excluded under standard property policies. Controlled environment failures and third-party storage gaps are common blind spots. When assets are irreplaceable, generic property coverage is rarely sufficient.</p><span class="gap-punch">This is the gap that most often surprises founders after a loss event.</span></div></div><div class="gap-sidebar"><div class="gap-sidebar-label">Common exposures missed</div><ul class="action-list"><li>Frozen cell lines not specifically scheduled</li><li>Research animals excluded from property</li><li>Third-party storage coverage gaps</li><li>Temperature excursion losses underinsured</li></ul></div></div>
-    <div class="gap-feature fade"><div><div class="gap-num-display">03</div><div class="gap-title">Treating D&amp;O as Standard Corporate Coverage</div><div class="gap-body"><p>D&O in HCLS carries unique intensity. Clinical setbacks, regulatory delays, and disclosure disputes frequently trigger investor litigation. Policy language — including professional services exclusions and clinical oversight carve-outs — must be reviewed carefully.</p><span class="gap-punch">If it wasn't negotiated with life sciences exposure in mind, it probably shows.</span></div></div><div class="gap-sidebar"><div class="gap-sidebar-label">Policy review checklist</div><ul class="action-list"><li>Professional services exclusions reviewed</li><li>Clinical oversight carve-outs assessed</li><li>Regulatory limitation language examined</li><li>Limits benchmarked to sector litigation severity</li></ul></div></div>
-    <div class="gap-feature fade"><div><div class="gap-num-display">04</div><div class="gap-title">Failing the Underwriting Test</div><div class="gap-body"><p>Insurance underwriting evaluates governance maturity, not just financials. Disorganized documentation, unclear product descriptions, or weak cybersecurity controls can make a company difficult or expensive to insure. Disciplined documentation and transparent communication materially improve insurability and pricing.</p><span class="gap-punch">Underwriters ask one question: does leadership understand and actively manage its risk?</span></div></div><div class="gap-sidebar"><div class="gap-sidebar-label">How to prepare</div><ul class="action-list"><li>Maintain organized compliance documentation</li><li>Write clear product descriptions and regulatory status</li><li>Document cybersecurity controls and incident response</li><li>Prepare a governance summary before renewal</li></ul></div></div>
+    <div class="gap-feature fade"><div class="gap-sidebar"><div class="gap-sidebar-label">What to watch for</div><ul class="action-list"><li>No questions about clinical trial activity</li><li>Product liability without bodily injury review</li><li>No ask about FDA regulatory pathway</li><li>Cyber not structured for PHI or genomic data</li></ul></div><div><div class="gap-num-display">01</div><div class="gap-title">Mistaking Startup Coverage for Life Sciences Coverage</div><div class="gap-body"><p>Early-stage companies often carry general startup insurance bundles without realizing that those policies may exclude clinical trial injury, product-related bodily harm, or regulatory-driven claims.</p><p style="margin-top:14px;">Clinical development, patient interaction, and regulated manufacturing require purpose-built coverage. If an insurer is not asking detailed questions about clinical trials, regulatory pathways, manufacturing processes, or product functionality, the program may not reflect the company's true risk profile.</p><span class="gap-punch">Generic coverage is cheaper until it isn't.</span></div></div></div>
+    <div class="gap-feature fade"><div class="gap-sidebar"><div class="gap-sidebar-label">Common exposures missed</div><ul class="action-list"><li>Frozen cell lines not specifically scheduled</li><li>Research animals excluded from property</li><li>Third-party storage coverage gaps</li><li>Temperature excursion losses underinsured</li></ul></div><div><div class="gap-num-display">02</div><div class="gap-title">Leaving Scientific Assets Unprotected</div><div class="gap-body"><p>Healthcare and Life Sciences companies frequently underestimate both the fragility and value of the assets they store. Research animals, biologic samples, frozen cell lines, temperature-sensitive materials, and proprietary datasets are often excluded or limited under standard property policies.</p><p style="margin-top:14px;">Controlled environment failures, power disruptions, and gaps in third-party storage coverage are common blind spots. When assets are irreplaceable, generic property coverage is rarely sufficient. If critical materials are not specifically scheduled or endorsed, they are likely underinsured.</p><span class="gap-punch">This is the gap that most often surprises founders after a loss event.</span></div></div></div>
+    <div class="gap-feature fade"><div class="gap-sidebar"><div class="gap-sidebar-label">Policy review checklist</div><ul class="action-list"><li>Professional services exclusions reviewed</li><li>Clinical oversight carve-outs assessed</li><li>Regulatory limitation language examined</li><li>Limits benchmarked to sector litigation severity</li></ul></div><div><div class="gap-num-display">03</div><div class="gap-title">Treating D&amp;O as Standard Corporate Coverage</div><div class="gap-body"><p>Directors &amp; Officers Insurance carries unique intensity in Healthcare and Life Sciences. Clinical setbacks, regulatory delays, and disclosure disputes frequently trigger investor litigation.</p><p style="margin-top:14px;">Policy language, including professional services exclusions, clinical oversight carve-outs, and regulatory limitations, should be reviewed carefully. Limits matter as well. Litigation severity in this sector often exceeds what similarly sized non-biotech companies carry. If a D&amp;O program was not negotiated with life sciences exposure in mind, it may reflect generic risk assumptions that leave leadership exposed during moments of maximum scrutiny.</p><span class="gap-punch">If it wasn't negotiated with life sciences exposure in mind, it probably shows.</span></div></div></div>
+    <div class="gap-feature fade"><div class="gap-sidebar"><div class="gap-sidebar-label">How to prepare</div><ul class="action-list"><li>Maintain organized compliance documentation</li><li>Write clear product descriptions and regulatory status</li><li>Document cybersecurity controls and incident response</li><li>Prepare a governance summary before renewal</li></ul></div><div><div class="gap-num-display">04</div><div class="gap-title">Failing the Underwriting Test</div><div class="gap-body"><p>Insurance underwriting evaluates more than financials. It evaluates governance maturity. Disorganized documentation, unclear product descriptions, vague regulatory positioning, or weak cybersecurity controls can make a company difficult or expensive to insure.</p><p style="margin-top:14px;">Conversely, disciplined documentation, transparent communication, and clearly articulated safeguards materially improve insurability and pricing. Underwriters ultimately ask a simple question: does leadership understand and actively manage its risk? Companies that answer "yes" with evidence rather than assurances consistently secure stronger terms and broader coverage.</p><span class="gap-punch">Underwriters ask one question: does leadership understand and actively manage its risk?</span></div></div></div>
     <div class="milestone-callout fade" style="margin-top: 64px;">
       <div class="mc-label">The Right Partner Makes the Difference</div>
       <div class="mc-headline">Specialization matters because these gaps aren't obvious to generalists.</div>
@@ -966,6 +982,7 @@ window.addEventListener('scroll', () => {
     ticking = true;
   }
 }, { passive: true });
+
 
 // ── Smooth anchor scroll
 document.querySelectorAll('a[href^="#"]').forEach(a => {
