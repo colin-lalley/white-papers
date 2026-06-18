@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+  ════════════════════════════════════════════
+  IMAGES REQUIRED — save to vouch-brain/projects/img/
+    hcls-scientist.png    → researcher reviewing tablet data in lab
+    hcls-microscope.png   → Leica microscope on bench with beakers
+    hcls-digital-team.png → team around holographic data table
+  ════════════════════════════════════════════
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Lab to IPO — Vouch Insurance Intelligence · 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+/* ─── RESET + VARIABLES ─────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --ink:         #0F1C2C;
+  --ink-light:   #4A5668;
+  --ink-faint:   #8A97A8;
+  --paper:       #FAF8F2;
+  --paper-warm:  #F3EEE4;
+  --paper-dark:  #EDE6D8;
+  --green:       #3BE0AD;
+  --green-dark:  #19A078;
+  --purple-deep: #4A1F5C;
+  --purple-mid:  #7A4FA5;
+  --purple-lite: #D6C6E6;
+  --yellow:      #E8FC83;
+  --rule:        rgba(15,28,44,0.12);
+}
+
+body {
+  font-family: 'Lora', Georgia, serif;
+  background: var(--paper);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── PROGRESS ──────────────────────────────────────── */
+#progress {
+  position: fixed; top: 0; left: 0;
+  height: 2px; width: 0%;
+  background: var(--green);
+  z-index: 1000;
+  transition: width 0.1s linear;
+}
+
+/* ─── RUNNING HEADER ────────────────────────────────── */
+#running-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+  display: flex; align-items: center;
+  padding: 0 48px; height: 44px;
+  background: rgba(250, 248, 242, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 0.5px solid var(--rule);
+  transform: translateY(-100%);
+  transition: transform 0.4s ease;
+  font-family: 'Inter', sans-serif;
+}
+#running-header.show { transform: translateY(0); }
+.rh-left { font-size: 10px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--ink-faint); }
+.rh-center { flex: 1; text-align: center; font-size: 12px; font-weight: 500; color: var(--ink-light); font-style: italic; }
+.rh-right { font-size: 10px; color: var(--ink-faint); }
+.rh-cta { margin-left: 20px; font-size: 11px; font-weight: 600; color: var(--green-dark); text-decoration: none; border-bottom: 1px solid var(--green); padding-bottom: 1px; }
+
+/* ─── FADE REVEAL ───────────────────────────────────── */
+.fade { opacity: 0; transition: opacity 0.9s ease; }
+.fade.in { opacity: 1; }
+.fade-d1 { transition-delay: 0.12s; }
+.fade-d2 { transition-delay: 0.26s; }
+.fade-d3 { transition-delay: 0.4s; }
+.fade-d4 { transition-delay: 0.55s; }
+
+/* ─── SHARED LAYOUT ─────────────────────────────────── */
+.section-label { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 20px; }
+.chapter-label { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--green-dark); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+.chapter-label::before { content: ''; display: block; width: 28px; height: 1.5px; background: var(--green); }
+.chapter-title { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(36px, 5vw, 62px); font-weight: 700; line-height: 1.04; letter-spacing: -0.5px; color: var(--ink); margin-bottom: 24px; max-width: 700px; }
+.chapter-deck { font-size: 17px; font-style: italic; line-height: 1.7; color: var(--ink-light); max-width: 580px; border-left: 2px solid var(--green); padding-left: 20px; }
+.body-text { font-size: 16px; line-height: 1.82; color: var(--ink); }
+.body-text p + p { margin-top: 20px; }
+.article-section-head { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--green-dark); margin: 36px 0 14px; }
+.bullet-list { list-style: none; margin-top: 16px; }
+.bullet-list li { font-size: 15px; line-height: 1.65; color: var(--ink-light); padding: 8px 0 8px 20px; position: relative; border-bottom: 0.5px solid var(--rule); }
+.bullet-list li:last-child { border-bottom: none; }
+.bullet-list li::before { content: '—'; position: absolute; left: 0; color: var(--green-dark); font-weight: 600; }
+
+/* ═══════════════════════════════════════════════════════
+   COVER — parallax image hero
+═══════════════════════════════════════════════════════ */
+#cover {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.cover-parallax-img {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to bottom,
+      rgba(10,18,30,0.72) 0%,
+      rgba(10,18,30,0.60) 40%,
+      rgba(10,18,30,0.78) 80%,
+      rgba(10,18,30,0.92) 100%),
+    url('./img/hcls-scientist.png');
+  background-size: cover;
+  background-position: center 30%;
+  background-attachment: fixed;
+  z-index: 0;
+}
+/* Fallback if image missing */
+.cover-parallax-img::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 70% 30%, rgba(74,31,92,0.5) 0%, transparent 65%);
+}
+.cover-masthead {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 28px 48px;
+  border-bottom: 0.5px solid rgba(247,248,242,0.12);
+}
+.masthead-title { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: rgba(247,248,242,0.45); }
+.masthead-issue { font-family: 'Inter', sans-serif; font-size: 11px; color: rgba(247,248,242,0.25); letter-spacing: 1px; }
+.cover-body {
+  flex: 1; position: relative; z-index: 2;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 60px 48px 40px; max-width: 1000px;
+}
+.cover-vertical-rule { width: 2px; height: 60px; background: var(--green); margin-bottom: 36px; }
+.cover-kicker { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--green); margin-bottom: 24px; }
+.cover-headline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(52px, 8vw, 100px);
+  font-weight: 900; line-height: 0.96; letter-spacing: -2px;
+  color: #FAF8F2; margin-bottom: 36px;
+}
+.cover-headline em { font-style: italic; font-weight: 400; color: rgba(247,248,242,0.5); }
+.cover-deck { font-family: 'Lora', Georgia, serif; font-size: 18px; font-style: italic; line-height: 1.65; color: rgba(247,248,242,0.62); max-width: 520px; margin-bottom: 48px; }
+.cover-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--green); color: var(--ink);
+  font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700;
+  padding: 13px 26px; text-decoration: none; letter-spacing: 0.3px;
+  transition: opacity 0.2s;
+}
+.cover-cta:hover { opacity: 0.88; }
+.cover-footer {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  border-top: 0.5px solid rgba(247,248,242,0.1);
+  margin: 0 48px;
+}
+.cover-line { padding: 26px 0; padding-right: 28px; border-right: 0.5px solid rgba(247,248,242,0.08); }
+.cover-line:last-child { border-right: none; padding-right: 0; padding-left: 28px; }
+.cover-line:nth-child(2) { padding-left: 28px; }
+.cover-line-label { font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--green); margin-bottom: 7px; }
+.cover-line-text { font-family: 'Lora', Georgia, serif; font-size: 13px; font-style: italic; color: rgba(247,248,242,0.45); line-height: 1.5; }
+
+/* ═══════════════════════════════════════════════════════
+   EDITORIAL IMAGE BLOCKS — parallax
+═══════════════════════════════════════════════════════ */
+
+/* Full-width editorial splash (below cover) */
+.editorial-splash {
+  position: relative;
+  height: 72vh;
+  overflow: hidden;
+}
+.editorial-splash img {
+  position: absolute;
+  width: 100%; height: 120%;
+  object-fit: cover;
+  object-position: center 20%;
+  top: -10%;
+  will-change: transform;
+}
+.editorial-splash-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(250,248,242,0) 0%,
+    rgba(250,248,242,0) 50%,
+    rgba(250,248,242,0.7) 80%,
+    rgba(250,248,242,1) 100%
+  );
+  z-index: 2;
+}
+.editorial-splash-caption {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 3;
+  padding: 24px 48px 28px;
+  display: flex; align-items: baseline; gap: 20px;
+}
+.caption-fig {
+  font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--ink-faint);
+  flex-shrink: 0;
+}
+.caption-text {
+  font-family: 'Lora', Georgia, serif; font-size: 14px; font-style: italic;
+  line-height: 1.6; color: var(--ink-light); max-width: 640px;
+}
+
+/* Mid-article full-width image break */
+.image-break {
+  position: relative;
+  height: 65vh;
+  overflow: hidden;
+  background: var(--ink); /* fallback */
+}
+.image-break img {
+  position: absolute;
+  width: 100%; height: 120%;
+  object-fit: cover;
+  object-position: center;
+  top: -10%;
+  will-change: transform;
+  opacity: 0.92;
+}
+.image-break-caption {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 3;
+  padding: 0 48px 32px;
+  background: linear-gradient(to top, rgba(15,28,44,0.75) 0%, transparent 100%);
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 48px;
+}
+.image-break-quote {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(18px, 2.5vw, 26px);
+  font-style: italic;
+  color: rgba(247,248,242,0.9);
+  line-height: 1.35;
+  max-width: 500px;
+}
+.image-break-attr {
+  font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--green);
+  white-space: nowrap; flex-shrink: 0; padding-bottom: 4px;
+}
+
+/* Chapter opener with image background */
+.img-chapter-opener {
+  position: relative;
+  overflow: hidden;
+  min-height: 60vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.img-chapter-opener-bg {
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  z-index: 0;
+}
+.img-chapter-opener-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(
+    105deg,
+    rgba(10,18,30,0.94) 0%,
+    rgba(10,18,30,0.80) 50%,
+    rgba(10,18,30,0.55) 100%
+  );
+}
+.img-chapter-opener-content {
+  position: relative; z-index: 2;
+  padding: 80px 48px 72px;
+  max-width: 960px; margin: 0 auto; width: 100%;
+}
+.img-chapter-opener .chapter-label { color: var(--green); }
+.img-chapter-opener .chapter-label::before { background: var(--green); }
+.img-chapter-opener .chapter-title { color: rgba(247,248,242,0.96); }
+.img-chapter-opener .chapter-deck { color: rgba(247,248,242,0.6); border-left-color: var(--green); }
+
+/* ═══════════════════════════════════════════════════════
+   INTRO
+═══════════════════════════════════════════════════════ */
+#intro { background: var(--paper); padding: 80px 0 72px; }
+.intro-header { text-align: center; padding: 0 48px; max-width: 700px; margin: 0 auto 64px; }
+.intro-headline { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(30px, 4vw, 46px); font-weight: 700; line-height: 1.1; color: var(--ink); margin-bottom: 18px; }
+.intro-deck { font-size: 18px; font-style: italic; line-height: 1.65; color: var(--ink-light); }
+.intro-columns { max-width: 960px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+.dropcap-p::first-letter { float: left; font-family: 'Playfair Display', Georgia, serif; font-size: 74px; font-weight: 900; line-height: 0.78; margin: 6px 14px 0 0; color: var(--purple-deep); }
+.key-points-box { background: var(--paper-warm); padding: 32px; border-top: 2px solid var(--purple-mid); }
+.key-points-label { font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--purple-mid); margin-bottom: 20px; }
+.key-point { display: flex; gap: 14px; padding: 14px 0; border-bottom: 0.5px solid var(--rule); }
+.key-point:last-child { border-bottom: none; padding-bottom: 0; }
+.kp-num { font-family: 'Playfair Display', Georgia, serif; font-size: 20px; font-weight: 700; color: var(--purple-lite); flex-shrink: 0; width: 28px; line-height: 1.3; }
+.kp-text { font-size: 14px; line-height: 1.65; color: var(--ink-light); }
+
+/* ─── PULL QUOTE ────────────────────────────────────── */
+.pullquote-wrap { max-width: 960px; margin: 64px auto; padding: 0 48px; }
+.pullquote { position: relative; padding: 44px 0 36px; border-top: 0.5px solid var(--rule); border-bottom: 0.5px solid var(--rule); text-align: center; }
+.pq-mark { font-family: 'Playfair Display', Georgia, serif; font-size: 96px; line-height: 0.6; color: var(--purple-lite); display: block; margin-bottom: 12px; font-weight: 700; }
+.pullquote blockquote { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(20px, 2.8vw, 28px); font-weight: 400; font-style: italic; line-height: 1.42; color: var(--ink); max-width: 700px; margin: 0 auto; }
+.pq-attr { margin-top: 18px; font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-faint); }
+
+/* ─── STAT BREAK ────────────────────────────────────── */
+.stat-break { background: var(--ink); padding: 0; position: relative; overflow: hidden; }
+.stat-break::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(74,31,92,0.28) 0%, transparent 60%); }
+.break-grid { max-width: 960px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; position: relative; z-index: 2; background: rgba(247,248,242,0.06); }
+.break-stat { padding: 52px 40px; background: var(--ink); }
+.break-num { font-family: 'Playfair Display', Georgia, serif; font-size: 64px; font-weight: 900; line-height: 1; color: var(--yellow); display: block; margin-bottom: 12px; }
+.break-label { font-size: 14px; font-style: italic; line-height: 1.65; color: rgba(247,248,242,0.5); }
+
+/* ═══════════════════════════════════════════════════════
+   CH1: HCLS TODAY
+═══════════════════════════════════════════════════════ */
+#ch1 { background: var(--paper); }
+.ch-ghost-num { position: absolute; font-family: 'Playfair Display', Georgia, serif; font-size: 260px; font-weight: 900; color: rgba(15,28,44,0.04); right: 0; top: -40px; line-height: 1; pointer-events: none; z-index: 1; user-select: none; }
+.chapter-opener { position: relative; overflow: hidden; }
+.chapter-opener-inner { max-width: 960px; margin: 0 auto; padding: 80px 48px 60px; position: relative; z-index: 2; }
+.article-body { max-width: 960px; margin: 0 auto; padding: 0 48px 80px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; align-items: start; }
+.sidebar-box { background: var(--paper-warm); border-top: 2px solid var(--ink); padding: 28px; }
+.sidebar-label { font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 14px; }
+.sidebar-text { font-size: 14px; line-height: 1.72; color: var(--ink-light); }
+.sidebar-text p + p { margin-top: 14px; }
+.sidebar-text strong { color: var(--ink); font-weight: 600; }
+
+/* ═══════════════════════════════════════════════════════
+   CH2: SIX RISKS
+═══════════════════════════════════════════════════════ */
+#ch2 { background: var(--paper-dark); }
+.risk-feature-inner { padding: 48px 0; border-top: 0.5px solid var(--rule); display: grid; grid-template-columns: 120px 1fr 260px; gap: 44px; align-items: start; }
+.risk-num-large { font-family: 'Playfair Display', Georgia, serif; font-size: 80px; font-weight: 900; line-height: 1; color: var(--paper-dark); -webkit-text-stroke: 1.5px var(--purple-lite); text-stroke: 1.5px var(--purple-lite); }
+.risk-feature-title { font-family: 'Playfair Display', Georgia, serif; font-size: 28px; font-weight: 700; line-height: 1.15; color: var(--ink); margin-bottom: 16px; }
+.risk-feature-body { font-size: 15px; line-height: 1.78; color: var(--ink-light); }
+.risk-feature-body p + p { margin-top: 16px; }
+.risk-sidebar { border-top: 2px solid var(--purple-mid); padding-top: 20px; }
+.risk-sidebar-label { font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--purple-mid); margin-bottom: 14px; }
+.risk-sidebar-items { list-style: none; }
+.risk-sidebar-items li { font-size: 13px; line-height: 1.6; color: var(--ink-light); padding: 7px 0 7px 14px; border-bottom: 0.5px solid var(--rule); position: relative; }
+.risk-sidebar-items li:last-child { border-bottom: none; }
+.risk-sidebar-items li::before { content: '→'; position: absolute; left: 0; color: var(--purple-mid); font-size: 10px; }
+.risk-callout-pill { display: inline-flex; align-items: center; gap: 6px; background: var(--purple-lite); color: var(--purple-deep); font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; padding: 5px 12px; border-radius: 20px; margin-top: 14px; }
+
+/* ═══════════════════════════════════════════════════════
+   CH3: EMERGING — IMAGE CHAPTER OPENER
+═══════════════════════════════════════════════════════ */
+#ch3 { background: var(--paper); }
+.ch3-body { background: var(--paper); }
+.emerging-three-col { max-width: 960px; margin: 0 auto; padding: 0 48px 80px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--rule); }
+.emerging-col { background: var(--paper); padding: 40px 32px; }
+.emerging-col-icon { font-family: 'Playfair Display', Georgia, serif; font-size: 32px; font-weight: 700; color: var(--purple-mid); margin-bottom: 4px; }
+.emerging-col-num { font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 18px; }
+.emerging-col-title { font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 700; line-height: 1.2; color: var(--ink); margin-bottom: 14px; }
+.emerging-col-body { font-size: 14px; line-height: 1.78; color: var(--ink-light); margin-bottom: 24px; }
+.emerging-risks { list-style: none; border-top: 0.5px solid var(--rule); padding-top: 16px; }
+.emerging-risks li { font-size: 13px; line-height: 1.6; color: var(--ink-light); padding: 6px 0 6px 14px; position: relative; border-bottom: 0.5px solid var(--rule); }
+.emerging-risks li:last-child { border-bottom: none; }
+.emerging-risks li::before { content: '—'; position: absolute; left: 0; color: var(--green-dark); }
+.emerging-action { margin-top: 18px; font-size: 13px; font-style: italic; color: var(--purple-mid); line-height: 1.55; font-weight: 500; }
+
+/* ═══════════════════════════════════════════════════════
+   CH4: LIFECYCLE
+═══════════════════════════════════════════════════════ */
+#ch4 { background: var(--paper-warm); }
+.lifecycle-wrap { max-width: 960px; margin: 0 auto; padding: 0 48px 80px; }
+.ls-row { display: grid; grid-template-columns: 40px 160px 1fr 1fr; gap: 28px; padding: 36px 0; border-bottom: 0.5px solid var(--rule); align-items: start; }
+.ls-row:last-of-type { border-bottom: none; }
+.ls-index { font-family: 'Playfair Display', Georgia, serif; font-size: 28px; font-weight: 700; color: var(--paper-dark); -webkit-text-stroke: 1px rgba(15,28,44,0.15); padding-top: 4px; }
+.ls-stage { font-family: 'Playfair Display', Georgia, serif; font-size: 17px; font-weight: 700; color: var(--ink); line-height: 1.2; padding-top: 4px; }
+.ls-col-head { font-family: 'Inter', sans-serif; font-size: 8.5px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px; }
+.ls-col-body { font-size: 14px; line-height: 1.68; color: var(--ink-light); }
+.ls-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+.ls-tag { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; padding: 3px 9px; border: 0.5px solid var(--green-dark); border-radius: 20px; color: var(--green-dark); }
+.milestone-callout { background: var(--paper); border-left: 3px solid var(--green); padding: 32px 36px; margin-top: 44px; }
+.mc-label { font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--green-dark); margin-bottom: 10px; }
+.mc-headline { font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 700; color: var(--ink); margin-bottom: 10px; line-height: 1.2; }
+.mc-body { font-size: 15px; line-height: 1.72; color: var(--ink-light); }
+
+/* ═══════════════════════════════════════════════════════
+   CH5: COVERAGES
+═══════════════════════════════════════════════════════ */
+#ch5 { background: var(--paper); }
+.coverage-wrap { max-width: 960px; margin: 0 auto; padding: 0 48px 80px; }
+.coverage-cat { padding: 40px 0; border-top: 0.5px solid var(--rule); }
+.cc-grid { display: grid; grid-template-columns: 180px 1fr; gap: 40px; align-items: start; }
+.cc-label { font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--ink-faint); padding-top: 5px; }
+.cc-items { display: flex; flex-direction: column; gap: 20px; }
+.cc-item-name { font-family: 'Playfair Display', Georgia, serif; font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.cc-item-body { font-size: 14px; line-height: 1.75; color: var(--ink-light); }
+.cc-item-note { display: inline-block; margin-top: 8px; font-size: 12px; font-style: italic; color: var(--purple-mid); border-bottom: 0.5px solid var(--purple-lite); padding-bottom: 1px; }
+
+/* ═══════════════════════════════════════════════════════
+   CH6: GAPS
+═══════════════════════════════════════════════════════ */
+#ch6 { background: var(--paper-dark); }
+.ch6-opener { background: var(--purple-deep); }
+.ch6-opener .chapter-label { color: var(--green); }
+.ch6-opener .chapter-label::before { background: var(--green); }
+.ch6-opener .chapter-title { color: var(--paper); }
+.ch6-opener .chapter-deck { color: rgba(247,248,242,0.6); border-left-color: var(--green); }
+.ch6-opener .ch-ghost-num { color: rgba(247,248,242,0.04); }
+.gaps-wrap { max-width: 960px; margin: 0 auto; padding: 0 48px 80px; }
+.gap-feature { padding: 52px 0; border-top: 0.5px solid var(--rule); display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+.gap-feature:first-child { border-top: none; }
+.gap-num-display { font-family: 'Playfair Display', Georgia, serif; font-size: 100px; font-weight: 900; line-height: 0.85; color: var(--paper); -webkit-text-stroke: 1.5px rgba(15,28,44,0.15); margin-bottom: 16px; }
+.gap-title { font-family: 'Playfair Display', Georgia, serif; font-size: 26px; font-weight: 700; line-height: 1.15; color: var(--ink); margin-bottom: 14px; }
+.gap-body { font-size: 15px; line-height: 1.78; color: var(--ink-light); }
+.gap-body p + p { margin-top: 14px; }
+.gap-punch { display: block; margin-top: 20px; font-family: 'Playfair Display', Georgia, serif; font-size: 16px; font-style: italic; color: var(--ink); padding-left: 20px; border-left: 2px solid var(--purple-mid); }
+.gap-sidebar { background: var(--paper); border-top: 2px solid var(--purple-deep); padding: 28px; }
+.gap-sidebar-label { font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 16px; }
+.action-list { list-style: none; }
+.action-list li { font-size: 13px; line-height: 1.6; padding: 8px 0 8px 16px; position: relative; border-bottom: 0.5px solid var(--rule); color: var(--ink-light); }
+.action-list li:last-child { border-bottom: none; }
+.action-list li::before { content: '✓'; position: absolute; left: 0; color: var(--green-dark); font-weight: 600; font-size: 11px; }
+
+/* ═══════════════════════════════════════════════════════
+   CONCLUSION
+═══════════════════════════════════════════════════════ */
+#conclusion { background: var(--ink); padding: 96px 0; position: relative; overflow: hidden; }
+#conclusion::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 50% 110%, rgba(74,31,92,0.3) 0%, transparent 65%); }
+.conclusion-inner { max-width: 680px; margin: 0 auto; padding: 0 48px; text-align: center; position: relative; z-index: 2; }
+.conclusion-kicker { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--green); margin-bottom: 32px; }
+.conclusion-headline { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(38px, 6vw, 62px); font-weight: 700; line-height: 1.08; color: var(--paper); margin-bottom: 28px; }
+.conclusion-headline em { font-style: italic; color: rgba(247,248,242,0.45); }
+.conclusion-body { font-size: 17px; font-style: italic; line-height: 1.78; color: rgba(247,248,242,0.58); margin-bottom: 48px; }
+.conclusion-habits { text-align: left; list-style: none; margin: 0 0 52px; }
+.conclusion-habits li { font-size: 16px; line-height: 1.7; color: rgba(247,248,242,0.7); padding: 14px 0 14px 28px; position: relative; border-bottom: 0.5px solid rgba(247,248,242,0.08); }
+.conclusion-habits li:last-child { border-bottom: none; }
+.conclusion-habits li::before { content: '—'; position: absolute; left: 0; color: var(--green); font-weight: 600; }
+.cta-btn { display: inline-block; background: var(--green); color: var(--ink); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; padding: 16px 36px; text-decoration: none; transition: opacity 0.2s; }
+.cta-btn:hover { opacity: 0.85; }
+.cta-sub { display: block; margin-top: 14px; font-family: 'Inter', sans-serif; font-size: 12px; color: rgba(247,248,242,0.28); }
+.cta-sub a { color: var(--green); text-decoration: none; }
+.pub-footer { background: var(--ink); border-top: 0.5px solid rgba(247,248,242,0.07); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; }
+.pub-logo { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 18px; color: var(--paper); letter-spacing: -0.3px; }
+.pub-logo span { color: var(--green); }
+.pub-tagline { font-family: 'Lora', Georgia, serif; font-size: 13px; font-style: italic; color: rgba(247,248,242,0.28); }
+.pub-meta { font-family: 'Inter', sans-serif; font-size: 11px; color: rgba(247,248,242,0.18); text-align: right; line-height: 1.7; }
+
+/* ─── RESPONSIVE ────────────────────────────────────── */
+@media (max-width: 768px) {
+  .intro-columns, .two-col, .emerging-three-col, .risk-feature-inner,
+  .ls-row, .cc-grid, .gap-feature, .break-grid, .cover-footer { grid-template-columns: 1fr; }
+  .cover-body, .chapter-opener-inner, .article-body, .pullquote-wrap,
+  .gaps-wrap, .coverage-wrap, .lifecycle-wrap, .emerging-three-col,
+  .img-chapter-opener-content { padding-left: 24px; padding-right: 24px; }
+  .cover-masthead, .pub-footer { padding-left: 24px; padding-right: 24px; }
+  .cover-footer { margin: 0 24px; }
+  .editorial-splash-caption, .image-break-caption { padding-left: 24px; padding-right: 24px; }
+  .ch-ghost-num { display: none; }
+  .cover-parallax-img { background-attachment: scroll; }
+  .img-chapter-opener-bg { background-attachment: scroll; }
+  .editorial-splash img, .image-break img { height: 100%; top: 0; }
+  .risk-num-large { font-size: 56px; }
+  .gap-num-display { font-size: 72px; }
+  .ls-index { display: none; }
+  .pub-footer { flex-direction: column; gap: 16px; text-align: center; }
+  .pub-meta { text-align: center; }
+  .image-break-quote { font-size: 17px; }
+}
+
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<header id="running-header">
+  <div class="rh-left">Vouch Insurance Intelligence</div>
+  <div class="rh-center" id="rh-chapter">Healthcare &amp; Life Sciences · 2026</div>
+  <div class="rh-right">vouch.us<a href="https://www.vouch.us" target="_blank" class="rh-cta">Talk to an advisor</a></div>
+</header>
+
+
+<!-- ════════════════════════════════════════════════════
+     COVER — scientist image, parallax
+════════════════════════════════════════════════════ -->
+<section id="cover">
+  <div class="cover-parallax-img"></div>
+  <div class="cover-masthead">
+    <div class="masthead-title">Vouch · Insurance Intelligence</div>
+    <div class="masthead-issue">Healthcare &amp; Life Sciences Special · 2026</div>
+  </div>
+  <div class="cover-body">
+    <div class="cover-vertical-rule"></div>
+    <div class="cover-kicker">Structuring Risk · From Lab to IPO</div>
+    <h1 class="cover-headline">Healthcare<br>&amp; Life<br><em>Sciences</em></h1>
+    <p class="cover-deck">How risk evolves across the HCLS company lifecycle — and what it takes to protect scientific assets, clinical milestones, and enterprise value at every stage.</p>
+    <a href="#intro" class="cover-cta">Read the report ↓</a>
+  </div>
+  <div class="cover-footer">
+    <div class="cover-line">
+      <div class="cover-line-label">Six Core Risks</div>
+      <div class="cover-line-text">From regulatory exposure to executive liability — the risks shaping HCLS today</div>
+    </div>
+    <div class="cover-line">
+      <div class="cover-line-label">The Lifecycle</div>
+      <div class="cover-line-text">How insurance strategy must evolve from R&D through IPO</div>
+    </div>
+    <div class="cover-line">
+      <div class="cover-line-label">Common Gaps</div>
+      <div class="cover-line-text">Four structural patterns that consistently leave HCLS companies exposed</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
+     INTRO
+════════════════════════════════════════════════════ -->
+<section id="intro">
+  <div class="intro-header fade">
+    <div class="section-label">Introduction</div>
+    <h2 class="intro-headline">Speed doesn't just create opportunity.<br>It magnifies exposure.</h2>
+    <p class="intro-deck">From AI-enabled diagnostics to next-generation therapeutics, innovation is accelerating the path from discovery to commercialization — and so are the stakes.</p>
+  </div>
+  <div class="intro-columns">
+    <div class="fade fade-d1">
+      <p class="body-text dropcap-p">From AI-enabled diagnostics to next-generation therapeutics, innovation is accelerating the path from discovery to commercialization in Healthcare and Life Sciences. Scientific progress is moving faster than ever — and so are the stakes.</p>
+      <p class="body-text" style="margin-top:20px;">In this sector, speed doesn't just create opportunity. It magnifies exposure. Unlike most software startups, HCLS companies face regulatory scrutiny before revenue, liability before scale, and valuation inflection points tied to clinical and regulatory milestones.</p>
+      <p class="body-text" style="margin-top:20px;">More than 90% of drug candidates that enter clinical development never reach approval. Along the way, companies navigate complex regulatory frameworks, manage clinical trial risk, secure capital through uncertain milestones, and prepare for the scrutiny that accompanies growth.</p>
+      <p class="body-text" style="margin-top:20px;">Organizations that navigate this landscape successfully treat risk as a structural component of company building — aligning governance discipline, operational controls, and stage-appropriate insurance strategy.</p>
+    </div>
+    <div class="fade fade-d2">
+      <div class="key-points-box">
+        <div class="key-points-label">This paper examines</div>
+        <div class="key-point"><div class="kp-num">I</div><div class="kp-text">Six core risks shaping today's HCLS landscape — from regulatory exposure to executive liability</div></div>
+        <div class="key-point"><div class="kp-num">II</div><div class="kp-text">Emerging exposures driven by AI adoption, ESG scrutiny, and transaction pressure</div></div>
+        <div class="key-point"><div class="kp-num">III</div><div class="kp-text">How insurance should function at each stage of company development</div></div>
+        <div class="key-point"><div class="kp-num">IV</div><div class="kp-text">The structural gaps that most often leave HCLS companies unintentionally exposed</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="pullquote-wrap fade">
+    <div class="pullquote">
+      <span class="pq-mark">&ldquo;</span>
+      <blockquote>In an industry defined by compressed timelines and binary outcomes, alignment is strategic.</blockquote>
+      <div class="pq-attr">Vouch · HCLS Research · 2026</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
+     EDITORIAL SPLASH — microscope, parallax
+     Full-width image break after intro, before Ch1
+════════════════════════════════════════════════════ -->
+<div class="editorial-splash fade">
+  <img src="./img/hcls-microscope.png" alt="Leica microscope on laboratory bench with sample beakers" class="parallax-img" id="parallax-microscope">
+  <div class="editorial-splash-overlay"></div>
+  <div class="editorial-splash-caption">
+    <span class="caption-fig">Fig. 01</span>
+    <span class="caption-text">Even in early R&D stages, HCLS companies steward fragile, high-value assets — frozen cell lines, biological samples, specialized equipment. A freezer failure or corrupted dataset can delay development, disrupt funding timelines, or derail regulatory progress.</span>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════
+     STAT BREAK
+════════════════════════════════════════════════════ -->
+<div class="stat-break">
+  <div class="break-grid">
+    <div class="break-stat fade">
+      <span class="break-num">90%</span>
+      <span class="break-label">of drug candidates entering clinical development never reach approval</span>
+    </div>
+    <div class="break-stat fade fade-d2">
+      <span class="break-num">$11M</span>
+      <span class="break-label">average healthcare data breach cost — highest of any industry, fourteen years running</span>
+    </div>
+    <div class="break-stat fade fade-d4">
+      <span class="break-num">1 in 5</span>
+      <span class="break-label">federal securities class actions targets Healthcare &amp; Life Sciences companies</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════
+     CH1: HCLS TODAY
+════════════════════════════════════════════════════ -->
+<section id="ch1">
+  <div class="chapter-opener">
+    <div class="ch-ghost-num">1</div>
+    <div class="chapter-opener-inner fade">
+      <div class="chapter-label">Chapter One</div>
+      <h2 class="chapter-title">Healthcare &amp; Life Sciences Today</h2>
+      <p class="chapter-deck">mRNA platforms, AI-driven drug discovery, decentralized trials, digital therapeutics — innovation is compressing timelines while increasing complexity. In HCLS, risk is structural. That isn't cause for alarm. It's a call for discipline.</p>
+    </div>
+  </div>
+  <div class="article-body">
+    <div class="two-col">
+      <div class="fade fade-d1">
+        <div class="article-section-head">The landscape</div>
+        <p class="body-text">Venture-backed companies are expected to scale, reach clinical milestones, satisfy regulators, and secure capital — often simultaneously. Speed is a defining feature of the sector, but it also magnifies risk.</p>
+        <p class="body-text" style="margin-top:20px;">As companies advance, exposure escalates. IND filings and human clinical trials introduce FDA and IRB scrutiny. Enterprise value often concentrates in a narrow set of IP assets and clinical milestones. The question for founders is no longer whether risk exists — but when it shows up, and whether the structure is ready.</p>
+        <div class="article-section-head">Where risk categories collide</div>
+        <p class="body-text">Technological, clinical, data governance, and product liability risks increasingly overlap. Coverage uncertainty — "which policy responds if something goes wrong?" — is now the more common question than "are we covered?"</p>
+      </div>
+      <div class="fade fade-d2">
+        <div class="sidebar-box">
+          <div class="sidebar-label">Key collisions</div>
+          <p class="sidebar-text"><strong>Cloud infrastructure</strong> accelerates research and collaboration but expands the cyber attack surface — healthcare data breaches now averaging nearly $10M per incident.</p>
+          <p class="sidebar-text"><strong>Artificial intelligence</strong> enables new levels of diagnostic insight and research productivity, while introducing governance, performance, and ethical risks as adoption outpaces standards.</p>
+          <p class="sidebar-text"><strong>Digital health platforms</strong> blur the boundary between software products and clinical practice, raising complex questions around professional liability and patient harm.</p>
+          <p class="sidebar-text"><strong>Connected devices</strong> combine engineering liability with bodily injury exposure, creating hybrid risk profiles that challenge traditional insurance categories.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pullquote-wrap fade">
+    <div class="pullquote">
+      <span class="pq-mark">&ldquo;</span>
+      <blockquote>Risk categories no longer operate in isolation. They intersect and compound. Clarity around risk structure before complexity scales is a competitive advantage.</blockquote>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
+     CH2: SIX CORE RISKS
+════════════════════════════════════════════════════ -->
+<section id="ch2">
+  <div class="chapter-opener" style="background: var(--paper-dark);">
+    <div class="ch-ghost-num">2</div>
+    <div class="chapter-opener-inner fade">
+      <div class="chapter-label">Chapter Two</div>
+      <h2 class="chapter-title">Six Core Risks in Healthcare &amp; Life Sciences</h2>
+      <p class="chapter-deck">The HCLS risk landscape is deeply interconnected. Regulatory pressure amplifies D&amp;O exposure. Cyber incidents become compliance events. Supply chain disruptions become valuation events.</p>
+    </div>
+  </div>
+  <div class="article-body" style="background: var(--paper-dark);">
+    <div class="risk-feature-inner fade">
+      <div class="risk-num-large">01</div>
+      <div>
+        <div class="risk-feature-title">Regulatory &amp; Compliance Risk</div>
+        <div class="risk-feature-body"><p>Oversight begins early — often before companies generate revenue. Moving from animal studies to human trials introduces FDA and IRB scrutiny. Commercialization adds labeling, advertising, and post-market obligations. Digital health companies face increasing scrutiny around claims and consumer privacy even when HIPAA doesn't technically apply.</p></div>
+        <div class="article-section-head">How to structure it</div>
+        <ul class="bullet-list">
+          <li>Assign clear compliance ownership, even part-time</li>
+          <li>Implement a stage-appropriate Quality Management System</li>
+          <li>Build privacy-by-design into product architecture</li>
+          <li>Formalize vendor oversight for CROs, CDMOs, and partners</li>
+        </ul>
+      </div>
+      <div class="risk-sidebar"><div class="risk-sidebar-label">How it shows up</div><ul class="risk-sidebar-items"><li>Protocol deviations trigger trial holds</li><li>Privacy practices lead to enforcement actions</li><li>Commercial partnerships create anti-kickback exposure</li></ul></div>
+    </div>
+    <div class="risk-feature-inner fade">
+      <div class="risk-num-large">02</div>
+      <div>
+        <div class="risk-feature-title">Cybersecurity &amp; Data Privacy</div>
+        <div class="risk-feature-body"><p>Health and research data are both highly valuable and heavily regulated. HCLS companies rely heavily on cloud infrastructure, external collaborators, and connected devices — which expands the attack surface significantly. IBM's 2024 Cost of a Data Breach Report found the average healthcare breach reached $11M, the highest of any industry for fourteen consecutive years.</p></div>
+        <div class="risk-callout-pill">$11M avg. healthcare breach cost</div>
+        <div class="article-section-head">How to structure it</div>
+        <ul class="bullet-list">
+          <li>Classify data and restrict access based on role and necessity</li>
+          <li>Encrypt data in transit and at rest with logging and monitoring controls</li>
+          <li>Conduct vendor security diligence and require contractual safeguards</li>
+          <li>Test an incident response plan before scaling clinical trials</li>
+          <li>Implement a written AI use policy defining approved tools and prohibited data</li>
+        </ul>
+      </div>
+      <div class="risk-sidebar"><div class="risk-sidebar-label">How it shows up</div><ul class="risk-sidebar-items"><li>Ransomware disrupts clinical trials</li><li>Misconfigured storage exposes participant data</li><li>Employees upload datasets into unapproved AI tools</li></ul></div>
+    </div>
+    <div class="risk-feature-inner fade">
+      <div class="risk-num-large">03</div>
+      <div>
+        <div class="risk-feature-title">Clinical Trial &amp; R&amp;D Risk</div>
+        <div class="risk-feature-body"><p>Clinical development carries risk related to participant injury, consent issues, protocol deviations, oversight failures, and loss of irreplaceable research data. Multinational trials introduce additional regulatory and liability complexity — a single incident can erase months of progress and delay financing timelines.</p></div>
+        <div class="article-section-head">How to structure it</div>
+        <ul class="bullet-list">
+          <li>Train investigators and staff on protocol adherence and safety procedures</li>
+          <li>Back up critical datasets and safeguard high-value research assets</li>
+          <li>Review protocols and consent materials with clinical and legal experts before trial initiation</li>
+          <li>Clearly define responsibilities and insurance requirements in CRO and CDMO contracts</li>
+        </ul>
+      </div>
+      <div class="risk-sidebar"><div class="risk-sidebar-label">How it shows up</div><ul class="risk-sidebar-items"><li>Participant adverse events during a trial</li><li>Protocol deviations invalidate data</li><li>Lab incidents destroy irreplaceable samples</li></ul></div>
+    </div>
+    <div class="risk-feature-inner fade">
+      <div class="risk-num-large">04</div>
+      <div>
+        <div class="risk-feature-title">Supply Chain &amp; Business Interruption</div>
+        <div class="risk-feature-body"><p>Critical materials are often perishable, temperature-sensitive, or difficult to replace. Qualifying a new supplier may take months due to regulatory and quality requirements. Many early-stage companies underestimate supply chain exposure until disruption forces the issue.</p></div>
+        <div class="article-section-head">How to structure it</div>
+        <ul class="bullet-list">
+          <li>Map single points of failure and qualify backup suppliers when possible</li>
+          <li>Strengthen vendor contracts with quality standards and insurance requirements</li>
+          <li>Implement temperature monitoring and logistics protocols</li>
+          <li>Model recovery timelines for critical vendors and manufacturing partners</li>
+        </ul>
+      </div>
+      <div class="risk-sidebar"><div class="risk-sidebar-label">How it shows up</div><ul class="risk-sidebar-items"><li>Cold-chain failures spoil critical materials</li><li>Sole-source supplier collapses before a key batch</li><li>Contamination requires scrapping under time pressure</li></ul></div>
+    </div>
+    <div class="risk-feature-inner fade">
+      <div class="risk-num-large">05</div>
+      <div>
+        <div class="risk-feature-title">Product Liability</div>
+        <div class="risk-feature-body"><p>Product failures in HCLS can result in serious injury or death. FDA clearance doesn't prevent litigation. Digital health tools introduce additional complexity when algorithms influence clinical decisions — raising questions about accountability when harm occurs.</p></div>
+        <div class="article-section-head">How to structure it</div>
+        <ul class="bullet-list">
+          <li>Maintain strong design controls and documented risk assessments</li>
+          <li>Align labeling and marketing claims with clinical evidence and intended use</li>
+          <li>Allocate liability clearly within vendor, distribution, and development contracts</li>
+          <li>Establish a product recall and crisis response plan before commercialization</li>
+        </ul>
+      </div>
+      <div class="risk-sidebar"><div class="risk-sidebar-label">How it shows up</div><ul class="risk-sidebar-items"><li>Post-market side effects lead to litigation</li><li>Device malfunctions trigger regulatory recalls</li><li>Algorithmic outputs contribute to incorrect decisions</li></ul></div>
+    </div>
+    <div class="risk-feature-inner fade">
+      <div class="risk-num-large">06</div>
+      <div>
+        <div class="risk-feature-title">Executive &amp; Board Risk</div>
+        <div class="risk-feature-body"><p>Company valuations often hinge on clinical and regulatory milestones. Dechert's 2025 analysis found roughly one in five federal securities class actions targeted HCLS companies — frequently centered on product safety, efficacy claims, regulatory disclosures, or development setbacks.</p></div>
+        <div class="risk-callout-pill">~20% of securities class actions</div>
+        <div class="article-section-head">How to structure it</div>
+        <ul class="bullet-list">
+          <li>Strengthen disclosure discipline and document key decisions</li>
+          <li>Provide regular compliance and risk reporting to the board</li>
+          <li>Formalize governance structures with committees, escalation paths, and conflict-of-interest policies</li>
+        </ul>
+      </div>
+      <div class="risk-sidebar"><div class="risk-sidebar-label">How it shows up</div><ul class="risk-sidebar-items"><li>Investors allege misleading disclosures post-setback</li><li>M&amp;A transactions generate valuation disputes</li><li>Compliance failures escalate into board litigation</li></ul></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
+     IMAGE BREAK — team around digital table
+     Full-width with pull quote overlay before Ch3
+════════════════════════════════════════════════════ -->
+<div class="image-break fade" id="digital-break">
+  <img src="./img/hcls-digital-team.png" alt="Team collaborating around a holographic data display" class="parallax-img" id="parallax-digital">
+  <div class="image-break-caption">
+    <div class="image-break-quote">"The next wave of HCLS risk is driven by convergence. AI blurs the boundary between software and clinical liability."</div>
+    <div class="image-break-attr">Vouch · 2026</div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════
+     CH3: EMERGING RISKS
+════════════════════════════════════════════════════ -->
+<section id="ch3" class="ch3-body">
+  <div class="chapter-opener" style="background: var(--ink); position: relative;">
+    <div class="ch-ghost-num" style="color: rgba(247,248,242,0.03);">3</div>
+    <div class="chapter-opener-inner fade">
+      <div class="chapter-label" style="color: var(--green);">Chapter Three</div>
+      <h2 class="chapter-title" style="color: var(--paper);">Emerging &amp; Evolving Risks</h2>
+      <p class="chapter-deck" style="color: rgba(247,248,242,0.6); border-left-color: var(--green);">AI blurs the boundary between software and clinical liability. ESG expectations merge governance with reputation. M&amp;A compresses years of operational history into a single diligence process. Founders who recognize these forces early build structural advantage.</p>
+    </div>
+  </div>
+  <div class="emerging-three-col">
+    <div class="emerging-col fade">
+      <div class="emerging-col-icon">AI</div>
+      <div class="emerging-col-num">Emerging Risk 01</div>
+      <div class="emerging-col-title">Generative AI &amp; Digital Health</div>
+      <div class="emerging-col-body">AI is reshaping drug discovery, clinical trials, diagnostics, and patient engagement — while introducing governance, privacy, and liability challenges that many standard policies were not designed to address.</div>
+      <ul class="emerging-risks"><li>Data leakage from unapproved AI tools</li><li>Bias across patient populations</li><li>Hallucinated outputs in patient-facing apps</li><li>Evolving FDA, FTC, and state guidance</li></ul>
+      <div class="emerging-action">Review how bodily injury is treated in Tech E&amp;O and Product Liability — policy titles alone are unreliable.</div>
+    </div>
+    <div class="emerging-col fade fade-d2">
+      <div class="emerging-col-icon">ESG</div>
+      <div class="emerging-col-num">Emerging Risk 02</div>
+      <div class="emerging-col-title">ESG Expectations</div>
+      <div class="emerging-col-body">What was once a reputational consideration is becoming a routine diligence line item — especially in healthcare, where trust and ethics are central to value.</div>
+      <ul class="emerging-risks"><li>Lab waste and ethical sourcing practices</li><li>Clinical trial diversity documentation</li><li>Governance maturity evidence</li><li>Public ESG claims as diligence targets</li></ul>
+      <div class="emerging-action">Governance discipline reduces valuation friction — document fundamentals before deal-table pressure.</div>
+    </div>
+    <div class="emerging-col fade fade-d4">
+      <div class="emerging-col-icon">M&A</div>
+      <div class="emerging-col-num">Emerging Risk 03</div>
+      <div class="emerging-col-title">M&amp;A Readiness &amp; IP Valuation</div>
+      <div class="emerging-col-body">HCLS transactions center on IP, proprietary data, and regulatory position. Many founders are surprised by how far back acquirers reach — and how aggressively risks are repriced.</div>
+      <ul class="emerging-risks"><li>Unclear IP ownership derails transactions</li><li>Undisclosed compliance issues reprice deals</li><li>D&amp;O runoff gaps create continuity risk</li><li>Inherited liabilities trigger post-close disputes</li></ul>
+      <div class="emerging-action">Clean documentation preserves deal leverage — building it under deal pressure is far more disruptive.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
+     CH4: LIFECYCLE
+════════════════════════════════════════════════════ -->
+<section id="ch4">
+  <div class="chapter-opener" style="background: var(--paper-warm);">
+    <div class="ch-ghost-num">4</div>
+    <div class="chapter-opener-inner fade">
+      <div class="chapter-label">Chapter Four</div>
+      <h2 class="chapter-title">Risk &amp; Insurance Across the Lifecycle</h2>
+      <p class="chapter-deck">Risk in HCLS doesn't expand in a straight line. Early exposure centers on fragile research assets. Clinical progression introduces human subject liability. Commercialization shifts toward product harm and disclosure discipline.</p>
+    </div>
+  </div>
+  <div class="lifecycle-wrap">
+    <div class="ls-row fade"><div class="ls-index">1</div><div class="ls-stage">R&amp;D &amp; Pre-Clinical</div><div><div class="ls-col-head">Primary Exposure &amp; Governance</div><div class="ls-col-body">Biological samples, research data, IP, laboratory environments. Founder-led oversight evolves into documented operational controls.</div></div><div><div class="ls-col-head">Insurance Focus</div><div class="ls-tags"><span class="ls-tag">General Liability</span><span class="ls-tag">Scientific Property</span><span class="ls-tag">Workers' Comp</span><span class="ls-tag">Cyber</span></div></div></div>
+    <div class="ls-row fade"><div class="ls-index">2</div><div class="ls-stage">Clinical Trials</div><div><div class="ls-col-head">Primary Exposure &amp; Governance</div><div class="ls-col-body">Participant injury, protocol integrity, PHI handling, multi-party contractual risk with CROs and trial sites.</div></div><div><div class="ls-col-head">Insurance Focus</div><div class="ls-tags"><span class="ls-tag">Clinical Trial Liability</span><span class="ls-tag">Cyber</span><span class="ls-tag">Tech E&O</span></div></div></div>
+    <div class="ls-row fade"><div class="ls-index">3</div><div class="ls-stage">Regulatory &amp; Pre-Launch</div><div><div class="ls-col-head">Primary Exposure &amp; Governance</div><div class="ls-col-body">Manufacturing scale-up, CMC changes, investor scrutiny, and disclosure risk. Scientific execution expands to regulatory and valuation discipline.</div></div><div><div class="ls-col-head">Insurance Focus</div><div class="ls-tags"><span class="ls-tag">D&O</span><span class="ls-tag">Product Liability</span><span class="ls-tag">Contingent BI</span></div></div></div>
+    <div class="ls-row fade"><div class="ls-index">4</div><div class="ls-stage">Commercialization</div><div><div class="ls-col-head">Primary Exposure &amp; Governance</div><div class="ls-col-body">Product harm, recall exposure, scaled cyber risk, supply chain disruption at commercial volume.</div></div><div><div class="ls-col-head">Insurance Focus</div><div class="ls-tags"><span class="ls-tag">Product Liability</span><span class="ls-tag">Recall</span><span class="ls-tag">Cyber</span><span class="ls-tag">Cargo / Stock</span></div></div></div>
+    <div class="ls-row fade"><div class="ls-index">5</div><div class="ls-stage">IPO &amp; Exit</div><div><div class="ls-col-head">Primary Exposure &amp; Governance</div><div class="ls-col-body">Securities litigation, disclosure obligations, legacy liabilities, and transaction integration risk.</div></div><div><div class="ls-col-head">Insurance Focus</div><div class="ls-tags"><span class="ls-tag">D&O</span><span class="ls-tag">Side A</span><span class="ls-tag">Runoff</span><span class="ls-tag">Continuity</span></div></div></div>
+    <div class="milestone-callout fade">
+      <div class="mc-label">Key Principle</div>
+      <div class="mc-headline">Milestones — not renewals — should drive insurance decisions.</div>
+      <div class="mc-body">First patient enrollment, IND filings, enterprise contract execution, and major financings are the moments to reassess coverage — not the annual renewal calendar. Aligning coverage to these transitions prevents the structural gaps that renewals routinely miss.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
+     CH5: COVERAGES
+════════════════════════════════════════════════════ -->
+<section id="ch5">
+  <div class="chapter-opener">
+    <div class="ch-ghost-num">5</div>
+    <div class="chapter-opener-inner fade">
+      <div class="chapter-label">Chapter Five</div>
+      <h2 class="chapter-title">Core Insurance Coverages</h2>
+      <p class="chapter-deck">Insurance programs in HCLS must be purpose-built for clinical, regulatory, and scientific complexity — not adapted from generic startup templates.</p>
+    </div>
+  </div>
+  <div class="coverage-wrap">
+    <div class="coverage-cat fade"><div class="cc-grid"><div class="cc-label">Governance Risk</div><div class="cc-items"><div class="cc-item"><div class="cc-item-name">Directors &amp; Officers (D&O)</div><div class="cc-item-body">Protects directors and officers when claims allege misrepresentation, fiduciary breach, or disclosure failures. D&O isn't a late-stage consideration — clinical setbacks and regulatory delays can trigger investor litigation at any stage. As companies approach pivotal trials, major financings, or IPO preparation, D&O coverage becomes balance-sheet critical.</div><span class="cc-item-note">Investors evaluate insurance structure as a signal of governance maturity.</span></div></div></div></div>
+    <div class="coverage-cat fade"><div class="cc-grid"><div class="cc-label">Human Impact Risk</div><div class="cc-items"><div class="cc-item"><div class="cc-item-name">Clinical Trial Liability</div><div class="cc-item-body">Protects against claims from participant injury during clinical development. Must be in place before the first patient is enrolled — frequently required by trial sites, IRBs, and regulators. Delaying until dosing approaches creates avoidable operational delays.</div></div><div class="cc-item"><div class="cc-item-name">Product Liability</div><div class="cc-item-body">Extends protection into commercialization. Once a product reaches patients, standard General Liability is rarely sufficient. Most HCLS companies require standalone policies reflecting the potential severity of harm.</div></div></div></div></div>
+    <div class="coverage-cat fade"><div class="cc-grid"><div class="cc-label">Digital &amp; Data Risk</div><div class="cc-items"><div class="cc-item"><div class="cc-item-name">Cyber Insurance</div><div class="cc-item-body">Covers breach response, legal fees, notification expenses, regulatory defense where insurable, and business interruption. With average healthcare breaches exceeding $11M, Cyber coverage is foundational — not optional.</div></div><div class="cc-item"><div class="cc-item-name">Technology E&O</div><div class="cc-item-body">Addresses claims when software fails to perform as intended. If software could contribute to patient harm, the treatment of bodily injury must be reviewed explicitly — many standard policies exclude it unless specifically negotiated.</div><span class="cc-item-note">Policy titles alone are not reliable indicators of bodily injury coverage.</span></div></div></div></div>
+    <div class="coverage-cat fade"><div class="cc-grid"><div class="cc-label">Asset &amp; Supply Chain</div><div class="cc-items"><div class="cc-item"><div class="cc-item-name">Scientific Property</div><div class="cc-item-body">Must extend beyond standard commercial forms. Research animals, biologic samples, frozen cell lines, and temperature-sensitive materials require specific scheduling or endorsements. Scientific assets are frequently underinsured.</div></div><div class="cc-item"><div class="cc-item-name">Contingent Business Interruption</div><div class="cc-item-body">Covers revenue loss when supplier disruption — not internal damage — interrupts operations. Critical for companies dependent on a single CDMO or sole-source reagent supplier.</div></div><div class="cc-item"><div class="cc-item-name">Cargo &amp; Stock Throughput</div><div class="cc-item-body">Addresses goods in transit or stored at third-party locations, including cold-chain shipments where temperature excursions can render entire batches unusable.</div></div></div></div></div>
+    <div class="coverage-cat fade"><div class="cc-grid"><div class="cc-label">Workforce &amp; Management Risk</div><div class="cc-items"><div class="cc-item"><div class="cc-item-name">Employment Practices Liability (EPL)</div><div class="cc-item-body">Covers claims alleging wrongful termination, discrimination, harassment, or other employment-related violations. Multi-state hiring, rapid headcount expansion, and high-pressure environments can elevate this risk.</div></div><div class="cc-item"><div class="cc-item-name">Crime Insurance</div><div class="cc-item-body">Protects against losses from employee dishonesty, fraud, forgery, and social engineering attacks. As financial controls evolve and organizations scale, both internal and external fraud exposure increase.</div></div><div class="cc-item"><div class="cc-item-name">Workers' Compensation</div><div class="cc-item-body">Legally required once employees are hired and particularly important in laboratory environments where physical injury risk is real. While straightforward, lapses can create significant financial and regulatory consequences.</div></div></div></div></div>
+    <div class="coverage-cat fade"><div class="cc-grid"><div class="cc-label">Additional Coverages</div><div class="cc-items"><div class="cc-item"><div class="cc-item-name">Medical Malpractice</div><div class="cc-item-body">Applies to organizations providing diagnostic, treatment, or telehealth services. Complements Tech E&amp;O and is necessary when clinical care is delivered directly.</div></div><div class="cc-item"><div class="cc-item-name">Fiduciary Liability</div><div class="cc-item-body">Protects against claims related to the management of employee benefit plans. Becomes more relevant as benefit programs grow in complexity.</div></div><div class="cc-item"><div class="cc-item-name">General Liability</div><div class="cc-item-body">Remains foundational, covering third-party bodily injury and property damage claims. In HCLS programs, confirm that products and completed operations coverage is included — these elements may be limited or excluded in startup-oriented insurance bundles.</div><span class="cc-item-note">Startup bundles may limit or exclude products and completed operations coverage.</span></div></div></div></div>
+  </div>
+  <div class="pullquote-wrap fade">
+    <div class="pullquote">
+      <span class="pq-mark">&ldquo;</span>
+      <blockquote>Insurance in Healthcare and Life Sciences cannot be treated as a static purchase. It must be engineered around clinical milestones, regulatory exposure, scientific assets, and investor expectations.</blockquote>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
+     CH6: COVERAGE GAPS
+════════════════════════════════════════════════════ -->
+<section id="ch6">
+  <div class="chapter-opener ch6-opener">
+    <div class="ch-ghost-num">6</div>
+    <div class="chapter-opener-inner fade">
+      <div class="chapter-label">Chapter Six</div>
+      <h2 class="chapter-title">Common Coverage Gaps</h2>
+      <p class="chapter-deck">Insurance failures in HCLS rarely occur because a company chose not to buy coverage. They occur because coverage was misaligned with the science, stage, or risk profile of the business.</p>
+    </div>
+  </div>
+  <div class="gaps-wrap">
+    <div class="gap-feature fade"><div><div class="gap-num-display">01</div><div class="gap-title">Mistaking Startup Coverage for Life Sciences Coverage</div><div class="gap-body"><p>Early-stage companies often carry general startup insurance bundles without realizing those policies may exclude clinical trial injury, product-related bodily harm, or regulatory-driven claims. If an insurer isn't asking detailed questions about clinical trials or regulatory pathways, the program may not reflect the company's true risk profile.</p><span class="gap-punch">Generic coverage is cheaper — until it isn't.</span></div></div><div class="gap-sidebar"><div class="gap-sidebar-label">What to watch for</div><ul class="action-list"><li>No questions about clinical trial activity</li><li>Product liability without bodily injury review</li><li>No ask about FDA regulatory pathway</li><li>Cyber not structured for PHI or genomic data</li></ul></div></div>
+    <div class="gap-feature fade"><div><div class="gap-num-display">02</div><div class="gap-title">Leaving Scientific Assets Unprotected</div><div class="gap-body"><p>Research animals, biologic samples, frozen cell lines, and temperature-sensitive materials are often excluded under standard property policies. Controlled environment failures and third-party storage gaps are common blind spots. When assets are irreplaceable, generic property coverage is rarely sufficient.</p><span class="gap-punch">This is the gap that most often surprises founders after a loss event.</span></div></div><div class="gap-sidebar"><div class="gap-sidebar-label">Common exposures missed</div><ul class="action-list"><li>Frozen cell lines not specifically scheduled</li><li>Research animals excluded from property</li><li>Third-party storage coverage gaps</li><li>Temperature excursion losses underinsured</li></ul></div></div>
+    <div class="gap-feature fade"><div><div class="gap-num-display">03</div><div class="gap-title">Treating D&amp;O as Standard Corporate Coverage</div><div class="gap-body"><p>D&O in HCLS carries unique intensity. Clinical setbacks, regulatory delays, and disclosure disputes frequently trigger investor litigation. Policy language — including professional services exclusions and clinical oversight carve-outs — must be reviewed carefully.</p><span class="gap-punch">If it wasn't negotiated with life sciences exposure in mind, it probably shows.</span></div></div><div class="gap-sidebar"><div class="gap-sidebar-label">Policy review checklist</div><ul class="action-list"><li>Professional services exclusions reviewed</li><li>Clinical oversight carve-outs assessed</li><li>Regulatory limitation language examined</li><li>Limits benchmarked to sector litigation severity</li></ul></div></div>
+    <div class="gap-feature fade"><div><div class="gap-num-display">04</div><div class="gap-title">Failing the Underwriting Test</div><div class="gap-body"><p>Insurance underwriting evaluates governance maturity, not just financials. Disorganized documentation, unclear product descriptions, or weak cybersecurity controls can make a company difficult or expensive to insure. Disciplined documentation and transparent communication materially improve insurability and pricing.</p><span class="gap-punch">Underwriters ask one question: does leadership understand and actively manage its risk?</span></div></div><div class="gap-sidebar"><div class="gap-sidebar-label">How to prepare</div><ul class="action-list"><li>Maintain organized compliance documentation</li><li>Write clear product descriptions and regulatory status</li><li>Document cybersecurity controls and incident response</li><li>Prepare a governance summary before renewal</li></ul></div></div>
+    <div class="milestone-callout fade" style="margin-top: 64px;">
+      <div class="mc-label">The Right Partner Makes the Difference</div>
+      <div class="mc-headline">Specialization matters because these gaps aren't obvious to generalists.</div>
+      <div class="mc-body">In Healthcare and Life Sciences, an insurance partner does more than place policies. The right advisor anticipates milestone transitions, identifies structural gaps, and understands the realities of clinical development, regulatory oversight, intellectual property sensitivity, and healthcare data exposure. These gaps become visible only through consistent experience in the sector. In an industry defined by compressed timelines and binary outcomes, insurance misalignment can delay trials, complicate financings, and magnify losses when events occur. The objective isn't simply to buy more insurance — it's to ensure the risk architecture evolves with the science.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
+     CONCLUSION
+════════════════════════════════════════════════════ -->
+<section id="conclusion">
+  <div class="conclusion-inner">
+    <div class="fade">
+      <div class="conclusion-kicker">Conclusion</div>
+      <h2 class="conclusion-headline">Innovate boldly.<br><em>Structure intelligently.</em></h2>
+      <p class="conclusion-body">Healthcare and Life Sciences has always been a high-variance industry. Scientific uncertainty, regulatory scrutiny, capital intensity, and public trust combine to create a uniquely compressed risk environment. Outcomes are often binary. Exposure rarely is.</p>
+      <p class="conclusion-body" style="margin-top: 20px;">As companies move from research to commercialization and eventual exit, the nature of risk changes. Asset fragility becomes human subject liability. Regulatory scrutiny becomes disclosure risk. Software innovation becomes patient impact. Supply chain dependency becomes valuation vulnerability.</p>
+      <p class="conclusion-body" style="margin-top: 20px;">Organizations that navigate this environment successfully share several habits:</p>
+    </div>
+    <ul class="conclusion-habits fade fade-d1">
+      <li>Align governance maturity with scientific milestones rather than waiting for a forcing event</li>
+      <li>Recalibrate insurance at inflection points rather than treating annual renewal as the only moment to reassess</li>
+      <li>Treat underwriting scrutiny as an opportunity to stress-test operations, not a procedural requirement</li>
+      <li>View insurance not as a cost center, but as a mechanism for financing volatility intelligently</li>
+    </ul>
+    <div class="fade fade-d2">
+      <p style="font-size: 17px; font-style: italic; line-height: 1.78; color: rgba(247,248,242,0.58); margin-bottom: 48px;">In a sector where delays burn capital and adverse events can reverberate across investors, regulators, and patients simultaneously, that posture is not just prudent. It's a competitive advantage. The Healthcare and Life Sciences companies that win will be the ones that innovate boldly and structure intelligently. Resilience is not the absence of disruption. It's the capacity to absorb it and keep moving forward.</p>
+      <a href="https://www.vouch.us" target="_blank" class="cta-btn">Talk to a Vouch Advisor</a>
+      <span class="cta-sub">Stage-smart coverage for HCLS companies, from seed through IPO &nbsp;·&nbsp; <a href="https://www.vouch.us" target="_blank">vouch.us</a></span>
+    </div>
+  </div>
+  <div class="pub-footer">
+    <div><div class="pub-logo">vouch<span>.</span></div><div class="pub-tagline">Ambition, insured.™</div></div>
+    <div class="pub-meta">Vouch Insurance Services, Inc. &nbsp;·&nbsp; Licensed in all 50 states<br>6,000+ companies insured &nbsp;·&nbsp; 500+ carrier partners &nbsp;·&nbsp; 74 NPS</div>
+  </div>
+</section>
+
+
+<script>
+const prog = document.getElementById('progress');
+const nav = document.getElementById('running-header');
+const rhChapter = document.getElementById('rh-chapter');
+
+const chapters = [
+  { id: 'intro',      label: 'Introduction' },
+  { id: 'ch1',        label: 'HCLS Today · Chapter 1' },
+  { id: 'ch2',        label: 'Six Core Risks · Chapter 2' },
+  { id: 'ch3',        label: 'Emerging Risks · Chapter 3' },
+  { id: 'ch4',        label: 'Risk Across the Lifecycle · Chapter 4' },
+  { id: 'ch5',        label: 'Core Coverages · Chapter 5' },
+  { id: 'ch6',        label: 'Coverage Gaps · Chapter 6' },
+  { id: 'conclusion', label: 'Conclusion' },
+];
+
+// ── Parallax images
+const parallaxItems = [
+  { el: document.getElementById('parallax-microscope'), rate: 0.25 },
+  { el: document.getElementById('parallax-digital'),    rate: 0.22 },
+];
+
+function updateParallax() {
+  parallaxItems.forEach(({ el, rate }) => {
+    if (!el) return;
+    const container = el.parentElement;
+    const rect = container.getBoundingClientRect();
+    if (rect.bottom < -100 || rect.top > window.innerHeight + 100) return;
+    const progress = (window.innerHeight * 0.5 - rect.top) / (rect.height + window.innerHeight);
+    const offset = progress * rect.height * rate * 2;
+    el.style.transform = `translateY(${offset}px)`;
+  });
+}
+
+// ── Fade reveals
+const fades = document.querySelectorAll('.fade');
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+fades.forEach(el => revealObs.observe(el));
+
+// ── Scroll handler
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      const scrollY = window.scrollY;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      prog.style.width = (scrollY / total * 100) + '%';
+
+      // Running nav
+      const cover = document.getElementById('cover');
+      if (cover && scrollY > cover.offsetHeight * 0.7) nav.classList.add('show');
+      else nav.classList.remove('show');
+
+      // Chapter label
+      let current = chapters[0];
+      chapters.forEach(c => {
+        const el = document.getElementById(c.id);
+        if (el && el.getBoundingClientRect().top <= 60) current = c;
+      });
+      if (rhChapter) rhChapter.textContent = current.label;
+
+      updateParallax();
+      ticking = false;
+    });
+    ticking = true;
+  }
+}, { passive: true });
+
+// ── Smooth anchor scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+
+// ── Init parallax on load
+window.addEventListener('load', updateParallax);
+updateParallax();
+</script>
+</body>
+</html>
